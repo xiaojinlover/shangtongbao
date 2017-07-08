@@ -1,0 +1,78 @@
+/*!
+ * =====================================================
+ * Mui v3.7.0 (http://dev.dcloud.net.cn/mui)
+ * =====================================================
+ */
+
+header.mui-bar {
+  background: #259cf0;
+}
+header.mui-bar h1.mui-title {
+  background: #259cf0;
+  color: #fff;
+}
+header.mui-bar a {
+  color: #fff;
+}
+
+nav.mui-bar-tab > .mui-active span {
+  color: #259cf0;
+}
+
+.mui-table-view::after, .mui-table-view::before {
+  height: 0;
+}
+.mui-table-view .mui-table-view-cell::after {
+  background: #eee;
+}
+
+#email .mui-off-canvas-left {
+  background: #FFF;
+}
+#email .mui-off-canvas-wrap.mui-active .mui-off-canvas-backdrop {
+  background: none !important;
+  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.2);
+}
+#email .mui-segmented-control {
+  background: #f5f5f5;
+  height: 100%;
+}
+#email .mui-segmented-control .mui-control-item.mui-active span {
+  border: 1px solid #259cf0;
+}
+#email .mui-segmented-control .mui-control-item {
+  width: 100%;
+  border-bottom: none !important;
+  text-align: center;
+  margin: 10px 0;
+}
+#email .mui-segmented-control .mui-control-item span {
+  background: #fff;
+  height: 50px;
+  width: 50px;
+  display: block;
+  border: 1px solid #eee;
+  padding: 5px;
+  line-height: 40px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+#email .mui-control-content .mui-table-view .mui-table-view-cell {
+  font-size: 16px;
+  color: #666;
+}
+#email .mui-control-content .mui-table-view .mui-table-view-cell i {
+  font-size: 22px;
+  color: #ccc;
+}
+#email .mui-scroll {
+  margin-top: 30px;
+}
+#email .mui-scroll .mui-content .mui-table-view .mui-table-view-cell a img {
+  border-radius: 50%;
+}
+#email .mui-scroll .mui-content .mui-table-view .mui-table-view-cell a .mui-media-body {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=style.css.map */

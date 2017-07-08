@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="misapplication-tap-highlight" content="no" />
+		<meta name="HandheldFriendly" content="true" />
+		<link rel="stylesheet" href="dist/css/mui.css">
+		<link rel="stylesheet" href="dist/css/style.css">
+		<link rel="stylesheet" href="css/iconfont.css">
+		<title>商通宝</title>
+		<style>
+			#pullrefresh {
+				padding-bottom: 54px;
+			}
+			
+			#index .mui-content>ul.mui-table-view-chevron li.mui-table-view-cell a#index-header-info::after {
+				font-size: 24px;
+			}
+		</style>
+	</head>
+
+	<body id="email">
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--侧滑-->
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
+				<div class="mui-row" style="height: 100%;">
+					<div class="mui-col-xs-3" style="height: 100%;">						
+						<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+							<a class="mui-control-item mui-active" href="#content1"><span>智</span></a>
+							<a class="mui-control-item" href="#content2"><span>业</span></a>
+							<a class="mui-control-item" href="#content3"><span>测</span></a>
+						</div>
+					</div>
+					<div id="segmentedControlContents" class="mui-col-xs-9" >
+						<div id="content1" class="mui-control-content mui-active">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 全部邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待处理邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-moshengren"></i> 陌生待处理</li>
+							</ul>
+						</div>
+						<div id="content2" class="mui-control-content">
+						 	
+						</div>
+						<div id="content3" class="mui-control-content">
+						  
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!--侧滑 end-->
+			<!--主界面部分-->
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">
+					<a href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
+					<h1 class="mui-title">全部邮件</h1>
+				</header>
+				<div class="mui-content mui-scroll-wrapper">
+					<div id="pullrefresh" class="mui-content mui-scroll-wrapper"> 
+						<div class="mui-scroll">
+							<div class="mui-content">
+								<ul class="mui-table-view mui-table-view-chevron"> 
+									<li class="mui-table-view-cell mui-media">
+										<a class="mui-navigate-right">
+											<img class="mui-media-object mui-pull-left" src="images/test.png">
+											<div class="mui-media-body">
+												你好！好久不见
+												<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a class='mui-navigate-right' href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/test.png">
+											<div class="mui-media-body">
+												合同签订了
+												<p class='mui-ellipsis'>静静的看这个世界，最后终于疯了</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a class="mui-navigate-right">
+											<img class="mui-media-object mui-pull-left" src="images/test.png">
+											<div class="mui-media-body">
+												今天去组织活动
+												<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!--导航-->
+					<nav class="mui-bar mui-bar-tab">
+						<a class="mui-tab-item mui-active" href="index">
+							<span class="mui-icon iconfont icon-em"></span>
+							<span class="mui-tab-label">邮件</span>
+						</a>
+						<a class="mui-tab-item" href="address">
+							<span class="mui-icon iconfont icon-kehu "></span>
+							<span class="mui-tab-label">客户</span>
+						</a>
+						<a class="mui-tab-item" href="address">
+							<span class="mui-icon iconfont icon-tongxunlu"></span>
+							<span class="mui-tab-label">通讯录</span>
+						</a>
+						<a class="mui-tab-item" href="setting">
+							<span class="mui-icon iconfont icon-wode"></span>
+							<span class="mui-tab-label">我的</span>
+						</a>
+					</nav>
+					<!--导航 end-->
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		var h5pullDown = true;
+	</script>
+	<script src="dist/js/mui.js"></script>
+	<script src="js/common.js"></script>
+	<script>
+		mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					callback: pulldownRefresh,
+					auto: true
+				}
+			}
+		});
+		var getInfo = function getInfo() {} //全局
+
+		//下拉刷新
+		function pulldownRefresh() {
+			setTimeout(function() {
+				var data1 = new getInfo();
+				data1.getData();
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			}, 800);
+		}
+		mui.plusReady(function() {
+			getInfo.prototype.getData = function() {}
+		})
+		
+	</script>
+
+</html>
