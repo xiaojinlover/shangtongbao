@@ -1,7 +1,7 @@
 var h5pullDown = true;
 
 
-
+var apiUrl = "http://116.62.232.164:9898";
 
 //html转义
 function html_decode(str) {

@@ -135,7 +135,7 @@
 			}
 		});
 		var getInfo = function getInfo() {} //全局
-
+		
 		//下拉刷新
 		function pulldownRefresh() {
 			setTimeout(function() {
@@ -144,8 +144,37 @@
 				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			}, 800);
 		}
+		
 		mui.plusReady(function() {
-			getInfo.prototype.getData = function() {}
+			getInfo.prototype.getData = function() {
+				var getEmailDta = {
+					"UserId":"admin",
+					"Password":"96E79218965EB72C92A549DD5A330112",
+					"Ran":123,
+					"Sign":"4297F44B13955235245B2497399D7A93"			
+				} 
+				
+				mui.ajax(apiUrl +  'api/user/get', { 
+					data: getEmailDta,
+					type: 'get',
+					
+					timeout: 10000,
+					success: function(data) { 
+						
+//						var data = JSON.parse(data);
+						var addressHtml = '';
+					},  
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("玩命加载中...");
+					},
+					complete: function() { 
+						plus.nativeUI.closeWaiting();
+					},
+					error: function(xhr, typeinfo) {
+						mui.alert("参数错误：" + typeinfo);
+					}
+				});
+			}
 		})
 		
 	</script>
