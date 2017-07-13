@@ -26,14 +26,14 @@
 			<!--侧滑-->
 			<aside id="offCanvasSide" class="mui-off-canvas-left">
 				<div class="mui-row" style="height: 100%;">
-					<div class="mui-col-xs-3" style="height: 100%;">						
+					<div class="mui-col-xs-3" style="height: 100%;">
 						<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
 							<a class="mui-control-item mui-active" href="#content1"><span>智</span></a>
 							<a class="mui-control-item" href="#content2"><span>业</span></a>
 							<a class="mui-control-item" href="#content3"><span>测</span></a>
 						</div>
 					</div>
-					<div id="segmentedControlContents" class="mui-col-xs-9" >
+					<div id="segmentedControlContents" class="mui-col-xs-9">
 						<div id="content1" class="mui-control-content mui-active">
 							<ul class="mui-table-view">
 								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 全部邮件</li>
@@ -42,10 +42,10 @@
 							</ul>
 						</div>
 						<div id="content2" class="mui-control-content">
-						 	
+
 						</div>
 						<div id="content3" class="mui-control-content">
-						  
+
 						</div>
 					</div>
 				</div>
@@ -58,11 +58,19 @@
 					<h1 class="mui-title">全部邮件</h1>
 				</header>
 				<div class="mui-content mui-scroll-wrapper">
-					<div id="pullrefresh" class="mui-content mui-scroll-wrapper"> 
+					<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 						<div class="mui-scroll">
 							<div class="mui-content">
-								<ul class="mui-table-view mui-table-view-chevron"> 
+								<ul class="mui-table-view mui-table-view-chevron" id="email-list">
 									<li class="mui-table-view-cell mui-media">
+										<a class="mui-navigate-right">
+											
+											<div class="mui-media-body">
+												暂无数据
+											</div>
+										</a>
+									</li>
+									<!--<li class="mui-table-view-cell mui-media">
 										<a class="mui-navigate-right">
 											<img class="mui-media-object mui-pull-left" src="images/test.png">
 											<div class="mui-media-body">
@@ -70,25 +78,7 @@
 												<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
 											</div>
 										</a>
-									</li> 
-									<li class="mui-table-view-cell mui-media">
-										<a class='mui-navigate-right' href="javascript:;">
-											<img class="mui-media-object mui-pull-left" src="images/test.png">
-											<div class="mui-media-body">
-												合同签订了
-												<p class='mui-ellipsis'>静静的看这个世界，最后终于疯了</p>
-											</div>
-										</a>
-									</li>
-									<li class="mui-table-view-cell mui-media">
-										<a class="mui-navigate-right">
-											<img class="mui-media-object mui-pull-left" src="images/test.png">
-											<div class="mui-media-body">
-												今天去组织活动
-												<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-											</div>
-										</a>
-									</li>
+									</li>-->
 								</ul>
 							</div>
 						</div>
@@ -100,7 +90,7 @@
 							<span class="mui-tab-label">邮件</span>
 						</a>
 						<a class="mui-tab-item" href="address">
-							<span class="mui-icon iconfont icon-kehu "></span>
+							<span class="mui-icon iconfont icon-kehu" ></span>
 							<span class="mui-tab-label">客户</span>
 						</a>
 						<a class="mui-tab-item" href="address">
@@ -135,7 +125,7 @@
 			}
 		});
 		var getInfo = function getInfo() {} //全局
-		
+
 		//下拉刷新
 		function pulldownRefresh() {
 			setTimeout(function() {
@@ -144,39 +134,53 @@
 				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			}, 800);
 		}
-		
+
 		mui.plusReady(function() {
 			getInfo.prototype.getData = function() {
-				var getEmailDta = {
-					"UserId":"admin",
-					"Password":"96E79218965EB72C92A549DD5A330112",
-					"Ran":123,
-					"Sign":"4297F44B13955235245B2497399D7A93"			
-				} 
+				var getEmailData = {
+					UserId:"admin",
+					Password:"96E79218965EB72C92A549DD5A330112",
+					Ran:123,
+					Sign:"4297F44B13955235245B2497399D7A93",
+					Boxid:0,
+					pageindex:1,
+					pagemax:10,
+					order:"toptime",
+					Act:'SJX'
+				}
 				
-				mui.ajax(apiUrl +  'api/user/get', { 
-					data: getEmailDta,
-					type: 'get',
-					
+				mui.ajax(apiUrl + '/api/mail/Getlist/', {
+					data:getEmailData,					
+					type: 'post',
 					timeout: 10000,
-					success: function(data) { 
+					success: function(data) {
 						
-//						var data = JSON.parse(data);
-						var addressHtml = '';
-					},  
-					beforeSend: function() {
-						plus.nativeUI.showWaiting("玩命加载中...");
+						var emailHtml = '';
+						
+						if(data.back.list!=''){
+							mui.each(data.back.list,function(index,item){
+								emailHtml +='<li class="mui-table-view-cell mui-media"><a class="mui-navigate-right"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.MailDate + '</span></a></li>';
+							})
+							document.getElementById('email-list').innerHTML = emailHtml;
+						}
 					},
-					complete: function() { 
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("玩命加载中...", {
+							background: "rgba(0,0,0,0.5)"
+						});
+
+					},
+					
+					complete: function() {
 						plus.nativeUI.closeWaiting();
 					},
-					error: function(xhr, typeinfo) {
+					error: function(xhr, typeinfo,errorThrown) {
+						
 						mui.alert("参数错误：" + typeinfo);
 					}
 				});
 			}
 		})
-		
 	</script>
 
 </html>
