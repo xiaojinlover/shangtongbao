@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<!--<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />-->
+		<meta name="misapplication-tap-highlight" content="no" />
+		<meta name="HandheldFriendly" content="true" />
+		<link rel="stylesheet" href="dist/css/mui.css">
+		<link rel="stylesheet" href="dist/css/style.css">
+		<link rel="stylesheet" href="css/iconfont.css">
+		<title>商路通</title>
+		<style>
+			body {
+				background: #fff;
+			}
+			
+			.mui-content {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body id="email-detail">
+		<header class="mui-bar mui-bar-nav">
+			<a class=" mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="email-title" class="mui-title"></h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded size14 text-999">
+				<span id="form-name" class="text-666"></span>
+				<span id="info" class="mui-pull-right text-blue">详情</span>
+				<table id="info-detail" class="mui-hidden">
+					<tr>
+						<td>发件人：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>收件人：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>抄送人：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>时间：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>地区：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>备注：</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+
+	</body>
+	<script>
+		var h5pullDown = true;
+	</script>
+	<script src="dist/js/mui.js"></script>
+	<script src="js/common.js"></script>
+	<script>
+		//		mui.init({
+		//			swipeBack: true //启用右滑关闭功能		
+		//		});
+
+		mui.init({
+			subpages: [{
+				url: 'email-detail-html.html',
+				id: 'email-detail-html',
+				styles: {
+					top: '85px',
+					bottom: 0,
+					width: '100%',
+					height: '100%',
+				},
+				extras: {
+					emailId: plus.webview.currentWebview().emailId
+				}
+			}]
+		});
+
+		mui.plusReady(function() {
+
+			var emailDetailHtml = plus.webview.getWebviewById('email-detail-html');
+
+			var FromName = plus.webview.currentWebview().FromName; //发件人姓名
+			var FromEmail = plus.webview.currentWebview().FromEmail; //发件人邮箱
+			var itTo = plus.webview.currentWebview().itTo; //收件人
+			var cc = plus.webview.currentWebview().cc; //抄送人
+			var SendDate = plus.webview.currentWebview().SendDate; //发件日期
+			var Area = plus.webview.currentWebview().Area; //来自
+			var Bak = plus.webview.currentWebview().Bak; //备注
+			var Subject = plus.webview.currentWebview().Subject; //标题
+			
+			document.getElementById('email-title').innerHTML = Subject;
+			document.getElementById('form-name').innerHTML = FromName;
+			
+			document.getElementById('info-detail').innerHTML = '<tr><td width="50">发件人：</td><td><span>' + FromEmail + '</span></td></tr><tr><td>收件人：</td><td>' + itTo + '</td></tr><tr><td>抄送人：</td><td>' + cc + '</td></tr><tr><td>时&nbsp;&nbsp;&nbsp;&nbsp;间：</td><td>' + SendDate + '</td></tr><tr><td>地&nbsp;&nbsp;&nbsp;&nbsp;区：</td><td>' + Area + '</td></tr><tr><td>备&nbsp;&nbsp;&nbsp;&nbsp;注：</td><td>' + Bak + '</td></tr>';
+
+//			plus.webview.getWebviewById('email-detail-html').setStyle({marginBottom:"308px"});
+			
+			mui(document).on('tap', '#info', function() {
+				var isHidden = document.getElementById('info-detail').getAttribute('class')
+				
+				
+				if(isHidden == "mui-hidden"){
+					document.getElementById('info-detail').setAttribute('class','');
+					var isHiddenHeight = (document.getElementById('info-detail').offsetHeight + 85)+'px';
+					plus.webview.getWebviewById('email-detail-html').setStyle({top:isHiddenHeight});
+					
+				}else{
+					document.getElementById('info-detail').setAttribute('class','mui-hidden');
+					
+					plus.webview.getWebviewById('email-detail-html').setStyle({top:"85px"});
+					
+				}
+			})
+
+		})
+	</script>
+
+</html>

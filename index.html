@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="dist/css/mui.css">
 		<link rel="stylesheet" href="dist/css/style.css">
 		<link rel="stylesheet" href="css/iconfont.css">
-		<title>商通宝</title>
+		<title>商路通</title>
 		<style>
 			#pullrefresh {
 				padding-bottom: 54px;
@@ -33,12 +33,34 @@
 							<a class="mui-control-item" href="#content3"><span>测</span></a>
 						</div>
 					</div>
-					<div id="segmentedControlContents" class="mui-col-xs-9">
-						<div id="content1" class="mui-control-content mui-active">
-							<ul class="mui-table-view">
+					<div id="segmentedControlContents" class="mui-col-xs-9" style="overflow: scroll; height: 100%;">
+						<div id="content1" class="mui-control-content mui-active" style="overflow: scroll;height: 100%;">
+							<ul class="mui-table-view" id="zhi-neng" style="overflow: scroll;height: 100%;">
 								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 全部邮件</li>
 								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待处理邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-moshengren"></i> 陌生待处理</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 陌生待处理</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 客户待处理</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 内部邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 红旗邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 置顶邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 智能标签</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 星标邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 询盘邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 已分配询盘</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待审批邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 已送审邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 驳回邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待提醒</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 已提醒</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待跟踪邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待分发邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 合同文件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 工厂</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 65</li>
+
+								<!--<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 全部邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待处理邮件</li>
+								<li class="mui-table-view-cell"><i class="iconfont icon-moshengren"></i> 陌生待处理</li>-->
 							</ul>
 						</div>
 						<div id="content2" class="mui-control-content">
@@ -64,7 +86,7 @@
 								<ul class="mui-table-view mui-table-view-chevron" id="email-list">
 									<li class="mui-table-view-cell mui-media">
 										<a class="mui-navigate-right">
-											
+
 											<div class="mui-media-body">
 												暂无数据
 											</div>
@@ -90,7 +112,7 @@
 							<span class="mui-tab-label">邮件</span>
 						</a>
 						<a class="mui-tab-item" href="address">
-							<span class="mui-icon iconfont icon-kehu" ></span>
+							<span class="mui-icon iconfont icon-kehu"></span>
 							<span class="mui-tab-label">客户</span>
 						</a>
 						<a class="mui-tab-item" href="address">
@@ -136,30 +158,36 @@
 		}
 
 		mui.plusReady(function() {
+			//设置登录信息
+			plus.storage.setItem("UserId", 'admin');
+			plus.storage.setItem("Password", '96E79218965EB72C92A549DD5A330112');
+			plus.storage.setItem("Ran", '123');
+			plus.storage.setItem("Sign", '4297F44B13955235245B2497399D7A93');
+
 			getInfo.prototype.getData = function() {
 				var getEmailData = {
-					UserId:"admin",
-					Password:"96E79218965EB72C92A549DD5A330112",
-					Ran:123,
-					Sign:"4297F44B13955235245B2497399D7A93",
-					Boxid:0,
-					pageindex:1,
-					pagemax:10,
-					order:"toptime",
-					Act:'SJX'
+					UserId: plus.storage.getItem('UserId'),
+					Password: plus.storage.getItem('Password'),
+					Ran: plus.storage.getItem('Ran'),
+					Sign: plus.storage.getItem('Sign'),
+					Boxid: 0,
+					pageindex: 1,
+					pagemax: 300,
+					order: "", 
+					Act: 'SJX'
 				}
-				
+
 				mui.ajax(apiUrl + '/api/mail/Getlist/', {
-					data:getEmailData,					
+					data: getEmailData,
 					type: 'post',
 					timeout: 10000,
 					success: function(data) {
-						
+
 						var emailHtml = '';
-						
-						if(data.back.list!=''){
-							mui.each(data.back.list,function(index,item){
-								emailHtml +='<li class="mui-table-view-cell mui-media"><a class="mui-navigate-right"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.MailDate + '</span></a></li>';
+					
+						if(data.back.list != '') {
+							mui.each(data.back.list, function(index, item) {
+								emailHtml += '<li class="mui-table-view-cell mui-media"><a data-Subject="' + item.Subject + '" data-Bak="' + item.Bak + '" data-Area="' + item.Area + '" data-SendDate="' + item.SendDate + '" data-cc="' + item.cc + '" data-itTo="' + item.itTo + '" data-FromEmail="' + item.FromEmail + '" data-FromName="' + item.FromName + '" data-mailid="' + item.Id + '" href="email-detail" class="mui-navigate-right"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.MailDate + '</span></a></li>';
 							})
 							document.getElementById('email-list').innerHTML = emailHtml;
 						}
@@ -168,18 +196,95 @@
 						plus.nativeUI.showWaiting("玩命加载中...", {
 							background: "rgba(0,0,0,0.5)"
 						});
-
 					},
-					
 					complete: function() {
 						plus.nativeUI.closeWaiting();
 					},
-					error: function(xhr, typeinfo,errorThrown) {
+					error: function(xhr, typeinfo, errorThrown) {
+
+						mui.alert("参数错误：" + typeinfo);
+					}
+				}); 
+
+				//邮件详情页连接
+				mui('.mui-table-view').on('tap', 'a', function(e) {
+					var FromName = this.getAttribute('data-FromName'); //发件人姓名
+					var FromEmail = this.getAttribute('data-FromEmail'); //发件人邮箱
+					var itTo = this.getAttribute('data-itTo'); //收件人
+					var cc = this.getAttribute('data-cc'); //抄送人
+					var SendDate = this.getAttribute('data-SendDate'); //发件日期
+					var Area = this.getAttribute('data-Area'); //来自
+					var Bak = this.getAttribute('data-Bak'); //备注
+					var Subject = this.getAttribute('data-Subject'); //主题
+
+					var href = this.getAttribute('href');
+					var emailId = this.getAttribute('data-mailid');
+
+					mui.openWindow({
+						url: href + '.html',
+						id: href,
+						createNew: true,
+						show: {
+							autoShow: true,
+							aniShow: "slide-in-right"
+						},
+						extras: {
+							emailId: emailId,
+							FromName: FromName,
+							FromEmail: FromEmail,
+							itTo: itTo,
+							cc: cc,
+							SendDate: SendDate,
+							Area: Area,
+							Bak: Bak,
+							Subject: Subject
+						},
+						waiting: {
+							autoShow: false,
+							title: '玩命加载中...'
+						},
+					})
+					return false;
+				})
+			}
+
+			//获取智邮件目录		
+				var getMenuData = {
+					UserId: plus.storage.getItem('UserId'),
+					Password: plus.storage.getItem('Password'),
+					Ran: plus.storage.getItem('Ran'),
+					Sign: plus.storage.getItem('Sign'),
+					parentid:'zn'
+				}
+				mui.ajax(apiUrl + '/api/mailbox/Getmenu', {
+					data: getMenuData,
+					type: 'post',
+					timeout: 10000,
+					success: function(data) {
 						
+						if(data.back!='')
+						var zhinengMenuHtml = ''
+						mui.each(data.back,function(index,item){
+							zhinengMenuHtml += '<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> ' + item.name + '</li>' 
+						})
+						
+//						document.getElementById('zhi-neng').innerHTML = zhinengMenuHtml
+					},
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("玩命加载中...", {
+							background: "rgba(0,0,0,0.5)"
+						});
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+					},
+					error: function(xhr, typeinfo, errorThrown) {
+
 						mui.alert("参数错误：" + typeinfo);
 					}
 				});
-			}
+			
+			
 		})
 	</script>
 

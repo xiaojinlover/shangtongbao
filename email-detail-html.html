@@ -1,0 +1,41 @@
+
+	<meta charset="utf-8" />
+	
+	<script src="dist/js/mui.js"></script>
+	<script src="js/common.js"></script>
+	<script charset="UTF-8">
+		mui.plusReady(function() {
+			window.onresize = function () {alert("改变大小");}
+			//获取邮件
+			var getEmailData = {		 		
+				UserId:"admin",
+				Password:"96E79218965EB72C92A549DD5A330112",
+				Ran:123,
+				Sign:"4297F44B13955235245B2497399D7A93",
+				MailId:plus.webview.currentWebview().emailId	
+			};
+			
+			mui.ajax(apiUrl +  '/api/mail/Get/', {
+				data: getEmailData,
+				type: 'post',
+				timeout: 10000,
+				success: function(data) {					
+					document.write(data.back.htmlbody);
+					document.body.style.marginBottom='210px'					 
+				},
+				beforeSend: function() {
+					plus.nativeUI.showWaiting("玩命加载中...", {
+						background: "rgba(0,0,0,0.4)"
+					});
+				},
+				complete: function() {
+					plus.nativeUI.closeWaiting();
+				},
+				error: function(xhr, typeinfo) {
+					mui.alert("参数错误：" + typeinfo);
+				}
+			});
+		})
+	</script>
+
+<!--</html>-->
