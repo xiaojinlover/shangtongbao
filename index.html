@@ -24,8 +24,8 @@
 	<body id="email">
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
 			<!--侧滑-->
-			<aside id="offCanvasSide" class="mui-off-canvas-left">
-				<div class="mui-row" style="height: 100%;">
+			<aside id="offCanvasSide" class="mui-off-canvas-left " >
+				<div class="mui-row" style="height: 100%;" id="offCanvasSideScroll" >
 					<div class="mui-col-xs-3" style="height: 100%;">
 						<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
 							<a class="mui-control-item mui-active" href="#content1"><span>智</span></a>
@@ -33,35 +33,17 @@
 							<a class="mui-control-item" href="#content3"><span>测</span></a>
 						</div>
 					</div>
-					<div id="segmentedControlContents" class="mui-col-xs-9" style="overflow: scroll; height: 100%;">
-						<div id="content1" class="mui-control-content mui-active" style="overflow: scroll;height: 100%;">
-							<ul class="mui-table-view" id="zhi-neng" style="overflow: scroll;height: 100%;">
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 全部邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待处理邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 陌生待处理</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 客户待处理</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 内部邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 红旗邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 置顶邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 智能标签</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 星标邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 询盘邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 已分配询盘</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待审批邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 已送审邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 驳回邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待提醒</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 已提醒</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待跟踪邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待分发邮件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 合同文件</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 工厂</li>
-								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 65</li>
-
+					<div id="segmentedControlContents" class="mui-col-xs-9" style="height: 100%;overflow: scroll;"> 
+						<!--<div class="mui-scroll-wrapper" >
+								<div class="mui-scroll">-->
+						<div id="content1" class="mui-control-content mui-active" >
+							
+							<ul class="mui-table-view" id="zhi-neng" > 
 								<!--<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 全部邮件</li>
 								<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> 待处理邮件</li>
 								<li class="mui-table-view-cell"><i class="iconfont icon-moshengren"></i> 陌生待处理</li>-->
 							</ul>
+							
 						</div>
 						<div id="content2" class="mui-control-content">
 
@@ -84,14 +66,7 @@
 						<div class="mui-scroll">
 							<div class="mui-content">
 								<ul class="mui-table-view mui-table-view-chevron" id="email-list">
-									<li class="mui-table-view-cell mui-media">
-										<a class="mui-navigate-right">
-
-											<div class="mui-media-body">
-												暂无数据
-											</div>
-										</a>
-									</li>
+									
 									<!--<li class="mui-table-view-cell mui-media">
 										<a class="mui-navigate-right">
 											<img class="mui-media-object mui-pull-left" src="images/test.png">
@@ -146,8 +121,16 @@
 				}
 			}
 		});
+		(function($){
+		$(".mui-col-xs-9").scroll({
+			bounce: true,
+			indicators: false
+			
+		});
+		
+		})(mui); 
 		var getInfo = function getInfo() {} //全局
-
+		
 		//下拉刷新
 		function pulldownRefresh() {
 			setTimeout(function() {
@@ -156,14 +139,14 @@
 				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			}, 800);
 		}
-
+	
 		mui.plusReady(function() {
 			//设置登录信息
 			plus.storage.setItem("UserId", 'admin');
 			plus.storage.setItem("Password", '96E79218965EB72C92A549DD5A330112');
 			plus.storage.setItem("Ran", '123');
 			plus.storage.setItem("Sign", '4297F44B13955235245B2497399D7A93');
-
+			
 			getInfo.prototype.getData = function() {
 				var getEmailData = {
 					UserId: plus.storage.getItem('UserId'),
@@ -172,11 +155,11 @@
 					Sign: plus.storage.getItem('Sign'),
 					Boxid: 0,
 					pageindex: 1,
-					pagemax: 300,
+					pagemax: 10,
 					order: "", 
 					Act: 'SJX'
 				}
-
+ 	
 				mui.ajax(apiUrl + '/api/mail/Getlist/', {
 					data: getEmailData,
 					type: 'post',
@@ -266,9 +249,8 @@
 						var zhinengMenuHtml = ''
 						mui.each(data.back,function(index,item){
 							zhinengMenuHtml += '<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> ' + item.name + '</li>' 
-						})
-						
-//						document.getElementById('zhi-neng').innerHTML = zhinengMenuHtml
+						})						
+						document.getElementById('zhi-neng').innerHTML = zhinengMenuHtml
 					},
 					beforeSend: function() {
 						plus.nativeUI.showWaiting("玩命加载中...", {
