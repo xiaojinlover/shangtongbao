@@ -75,6 +75,10 @@ nav.mui-bar-tab > .mui-active span {
   font-size: 16px;
 }
 
+.mui-bar-nav {
+  box-shadow: none;
+}
+
 .text-333 {
   color: #333 !important;
 }

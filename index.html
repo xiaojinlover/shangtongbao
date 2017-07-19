@@ -125,7 +125,6 @@
 		$(".mui-col-xs-9").scroll({
 			bounce: true,
 			indicators: false
-			
 		});
 		
 		})(mui); 
@@ -155,7 +154,7 @@
 					Sign: plus.storage.getItem('Sign'),
 					Boxid: 0,
 					pageindex: 1,
-					pagemax: 10,
+					pagemax: 100,
 					order: "", 
 					Act: 'SJX'
 				}
@@ -170,7 +169,7 @@
 					
 						if(data.back.list != '') {
 							mui.each(data.back.list, function(index, item) {
-								emailHtml += '<li class="mui-table-view-cell mui-media"><a data-Subject="' + item.Subject + '" data-Bak="' + item.Bak + '" data-Area="' + item.Area + '" data-SendDate="' + item.SendDate + '" data-cc="' + item.cc + '" data-itTo="' + item.itTo + '" data-FromEmail="' + item.FromEmail + '" data-FromName="' + item.FromName + '" data-mailid="' + item.Id + '" href="email-detail" class="mui-navigate-right"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.MailDate + '</span></a></li>';
+								emailHtml += '<li class="mui-table-view-cell mui-media"><a data-Subject="' + item.Subject + '" data-Bak="' + item.Bak + '" data-Area="' + item.Area + '" data-SendDate="' + item.SendDate + '" data-cc="' + item.cc + '" data-itTo="' + item.itTo + '" data-FromEmail="' + item.FromEmail + '" data-FromName="' + item.FromName + '" data-mailid="' + item.Id + '" href="email-detail" class="mui-navigate-right1"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.MailDate + '</span></a></li>';
 							})
 							document.getElementById('email-list').innerHTML = emailHtml;
 						}

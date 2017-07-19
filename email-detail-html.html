@@ -1,11 +1,26 @@
-
+	
 	<meta charset="utf-8" />
 	
 	<script src="dist/js/mui.js"></script>
 	<script src="js/common.js"></script>
 	<script charset="UTF-8">
 		mui.plusReady(function() {
-			window.onresize = function () {alert("改变大小");}
+			
+//			var FromName = plus.webview.currentWebview().FromName; //发件人姓名
+//			var FromEmail = plus.webview.currentWebview().FromEmail; //发件人邮箱
+//			var itTo = plus.webview.currentWebview().itTo; //收件人
+//			var cc = plus.webview.currentWebview().cc; //抄送人
+//			var SendDate = plus.webview.currentWebview().SendDate; //发件日期
+//			var Area = plus.webview.currentWebview().Area; //来自
+//			var Bak = plus.webview.currentWebview().Bak; //备注
+//			var Subject = plus.webview.currentWebview().Subject; //标题
+//			
+//			
+//			
+//			var title = '<table><tr><td width="50">发件人：</td><td><span>' + FromEmail + '</span></td></tr><tr><td>收件人：</td><td>' + itTo + '</td></tr><tr><td>抄送人：</td><td>' + cc + '</td></tr><tr><td>时&nbsp;&nbsp;&nbsp;&nbsp;间：</td><td>' + SendDate + '</td></tr><tr><td>地&nbsp;&nbsp;&nbsp;&nbsp;区：</td><td>' + Area + '</td></tr><tr><td>备&nbsp;&nbsp;&nbsp;&nbsp;注：</td><td>' + Bak + '</td></tr></table>';
+
+			
+			
 			//获取邮件
 			var getEmailData = {		 		
 				UserId:"admin",
@@ -21,7 +36,7 @@
 				timeout: 10000,
 				success: function(data) {					
 					document.write(data.back.htmlbody);
-					document.body.style.marginBottom='210px'					 
+					document.body.style.marginBottom = '220px'
 				},
 				beforeSend: function() {
 					plus.nativeUI.showWaiting("玩命加载中...", {
@@ -35,6 +50,7 @@
 					mui.alert("参数错误：" + typeinfo);
 				}
 			});
+			
 		})
 	</script>
 

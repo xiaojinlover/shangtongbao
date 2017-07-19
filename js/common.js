@@ -24,7 +24,10 @@ function html_clean(str) {
 	s = s.replace(/&lt;(.*?)&gt;/g, "");
 	return s;
 }
-
+function removeHtmlTab(tab) { 
+ 	tab = tab.replace(/</g,'');//删除所有HTML标签 
+ 	return tab.replace(/>/g,'');
+} 
 mui.plusReady(function() {
 	//系统状态栏
 	plus.navigator.setStatusBarBackground("#259cf0");
