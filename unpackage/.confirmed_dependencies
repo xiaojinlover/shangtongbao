@@ -1,0 +1,13 @@
+{
+	"index.html": {
+		"resources": [
+			"js/common.js",
+			"dist/js/mui.js",
+			"css/iconfont.css",
+			"dist/css/style.css",
+			"css/iconfont.woff",
+			"dist/css/mui.css",
+			"dist/fonts/mui.ttf"
+		]
+	}
+}

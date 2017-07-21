@@ -34,8 +34,11 @@
 				data: getEmailData,
 				type: 'post',
 				timeout: 10000,
-				success: function(data) {					
-					document.write(data.back.htmlbody);
+				success: function(data) {
+					if((data.back.htmlbody!=''))
+						document.write(data.back.htmlbody);
+					else
+						document.write(data.back.textBody)
 					document.body.style.marginBottom = '220px'
 				},
 				beforeSend: function() {

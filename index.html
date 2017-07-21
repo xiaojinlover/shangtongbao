@@ -12,18 +12,24 @@
 		<title>商路通</title>
 		<style>
 			#pullrefresh {
-				padding-bottom: 54px;
+				padding-bottom: 80px;
 			}
-			
+			.mui-table-view-chevron .mui-table-view-cell > a:not(.mui-btn) {
+			    margin-right: -105px;
+			}
+			.mui-table-view-chevron .mui-table-view-cell {
+			    padding-right: 105px;
+			}
+
 			#index .mui-content>ul.mui-table-view-chevron li.mui-table-view-cell a#index-header-info::after {
 				font-size: 24px;
 			}
 		</style>
 	</head>
-
+ 
 	<body id="email">
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
-			<!--侧滑-->
+			<!--侧滑--> 
 			<aside id="offCanvasSide" class="mui-off-canvas-left " >
 				<div class="mui-row" style="height: 100%;" id="offCanvasSideScroll" >
 					<div class="mui-col-xs-3" style="height: 100%;">
@@ -59,14 +65,18 @@
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav">
 					<a href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
-					<h1 class="mui-title">全部邮件</h1>
+					<h1 class="mui-title">全部邮件</h1> 
+					<a class="mui-btn mui-btn-link mui-pull-right" id="icon-menu"><i class="mui-icon iconfont icon-tianjia text-white"></i></a>
 				</header>
 				<div class="mui-content mui-scroll-wrapper">
 					<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 						<div class="mui-scroll">
 							<div class="mui-content">
+								
+								
+
 								<ul class="mui-table-view mui-table-view-chevron" id="email-list">
-									
+	
 									<!--<li class="mui-table-view-cell mui-media">
 										<a class="mui-navigate-right">
 											<img class="mui-media-object mui-pull-left" src="images/test.png">
@@ -103,8 +113,20 @@
 				</div>
 				<div class="mui-off-canvas-backdrop"></div>
 			</div>
+			
 		</div>
-
+		<!--下拉菜单-->
+			<div id="menu-wrapper" class="menu-wrapper hidden">   
+				<div id="menu" class="menu">
+					<ul class="mui-table-view mui-table-view-menu">
+						<li class="mui-table-view-cell">
+							 <a href="write-email"><i class="mui-icon iconfont icon-xieyoujian text-blue"></i> &nbsp;&nbsp;<span class="text-666">写邮件</span></a>
+						</li> 
+					</ul>
+				</div>
+			</div>
+			<div id="menu-backdrop" class="menu-backdrop"></div>
+		<!--下拉菜单 end-->
 	</body>
 	<script>
 		var h5pullDown = true;
@@ -117,16 +139,16 @@
 				container: '#pullrefresh',
 				down: {
 					callback: pulldownRefresh,
-					auto: true
+					auto: true,
+				 	style: 'default'            	
 				}
-			}
+			} 
 		});
 		(function($){
-		$(".mui-col-xs-9").scroll({
-			bounce: true,
-			indicators: false
-		});
-		
+			$(".mui-col-xs-9").scroll({
+				bounce: true,
+				indicators: false
+			});		
 		})(mui); 
 		var getInfo = function getInfo() {} //全局
 		
@@ -139,6 +161,8 @@
 			}, 800);
 		}
 	
+	
+
 		mui.plusReady(function() {
 			//设置登录信息
 			plus.storage.setItem("UserId", 'admin');
@@ -154,7 +178,7 @@
 					Sign: plus.storage.getItem('Sign'),
 					Boxid: 0,
 					pageindex: 1,
-					pagemax: 100,
+					pagemax: 150, 
 					order: "", 
 					Act: 'SJX'
 				}
@@ -164,13 +188,13 @@
 					type: 'post',
 					timeout: 10000,
 					success: function(data) {
-
-						var emailHtml = '';
-					
+						
+						var emailHtml = '';					
 						if(data.back.list != '') {
 							mui.each(data.back.list, function(index, item) {
-								emailHtml += '<li class="mui-table-view-cell mui-media"><a data-Subject="' + item.Subject + '" data-Bak="' + item.Bak + '" data-Area="' + item.Area + '" data-SendDate="' + item.SendDate + '" data-cc="' + item.cc + '" data-itTo="' + item.itTo + '" data-FromEmail="' + item.FromEmail + '" data-FromName="' + item.FromName + '" data-mailid="' + item.Id + '" href="email-detail" class="mui-navigate-right1"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.MailDate + '</span></a></li>';
-							})
+								emailHtml += '<li class="mui-table-view-cell mui-media"><a data-Subject="' + item.Subject + '" data-Bak="' + item.Bak + '" data-Area="' + item.Area + '" data-SendDate="' + item.RecDate.substr(0,10) + '" data-cc="' + item.cc + '" data-itTo="' + item.itTo + '" data-FromEmail="' + item.FromEmail + '" data-FromName="' + item.FromName + '" data-mailid="' + item.Id + '" href="email-detail"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.RecDate.substr(0,10) + '</span></a></li>';
+							})	
+							
 							document.getElementById('email-list').innerHTML = emailHtml;
 						}
 					},
@@ -183,13 +207,14 @@
 						plus.nativeUI.closeWaiting();
 					},
 					error: function(xhr, typeinfo, errorThrown) {
-
 						mui.alert("参数错误：" + typeinfo);
 					}
 				}); 
 
-				//邮件详情页连接
-				mui('.mui-table-view').on('tap', 'a', function(e) {
+				
+			}
+			//邮件详情页连接
+				mui('#email-list').on('tap', 'a', function(e) {
 					var FromName = this.getAttribute('data-FromName'); //发件人姓名
 					var FromEmail = this.getAttribute('data-FromEmail'); //发件人邮箱
 					var itTo = this.getAttribute('data-itTo'); //收件人
@@ -225,11 +250,25 @@
 							autoShow: false,
 							title: '玩命加载中...'
 						},
-					})
-					return false;
+					})					
 				})
-			}
-
+				//写邮件等下拉跳转
+				mui('#menu').on('tap', 'a', function(e) {
+					var href = this.getAttribute('href');
+					mui.openWindow({
+						url: href + '.html',
+						id: href,
+						createNew: true,
+						show: {
+							autoShow: true,
+							aniShow: "slide-in-bottom"
+						},
+						waiting: {
+							autoShow: false,
+							title: '玩命加载中...'
+						},
+					})					
+				})
 			//获取智邮件目录		
 				var getMenuData = {
 					UserId: plus.storage.getItem('UserId'),
@@ -264,7 +303,35 @@
 						mui.alert("参数错误：" + typeinfo);
 					}
 				});
-			
+			//更多下拉
+			document.getElementById('menu-backdrop').addEventListener('tap', toggleMenu);
+			document.getElementById("icon-menu").addEventListener('tap',toggleMenu)
+			mui('.mui-table-view-menu').on('tap','a',toggleMenu);
+			var busying = false;
+			function toggleMenu() {
+				if (busying) { 
+					return; 
+				}
+				busying = true;
+				if (document.getElementById("menu-wrapper").classList.contains('mui-active')) {
+					document.body.classList.remove('menu-open');
+					document.getElementById("menu-wrapper").className = 'menu-wrapper bounce-out-up animated';
+					document.getElementById("menu").className = 'menu';
+					setTimeout(function() {						
+						document.getElementById('menu-backdrop').style.opacity = 0;
+						document.getElementById("menu-wrapper").classList.add('hidden'); 
+					}, 500);
+				} else {
+					
+					document.body.classList.add('menu-open');
+					document.getElementById("menu-wrapper").className = 'menu-wrapper bounce-in-down animated mui-active';
+					document.getElementById("menu").className = 'menu';
+					document.getElementById('menu-backdrop').style.opacity = 1; 
+				}
+				setTimeout(function() {
+					busying = false;    
+				}, 500);
+			}
 			
 		})
 	</script>
