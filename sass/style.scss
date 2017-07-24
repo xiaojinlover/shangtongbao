@@ -99,8 +99,36 @@ nav.mui-bar-tab{
 	
 }
 
-
-
+#write-email{
+	.mui-content{
+		.mui-input-group{
+			.mui-input-row{
+				
+			}
+		}
+	}
+}
+.mui-input-group{
+	
+	.mui-input-row{
+		height: auto;
+		label{
+			color:#999;
+			font-size: 16px;
+			width: 25%
+		}
+		input{
+			width: 75%;
+			height: auto !important;
+		}
+		textarea{
+			height:auto;
+		}
+		&::after,&::before{
+			background:#f8f8f8;		
+		}
+	}
+}
 .mui-bar-nav{
 	box-shadow: none;
 }

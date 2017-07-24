@@ -1,0 +1,88 @@
+div.mf_container {
+	cursor: text;
+	display: inline-block;
+	padding: 2px;
+	width: 75%;
+}
+div.mf_container ol.mf_list {
+	display: inline;
+	font-size: 14px;
+	margin: 0;
+	line-height: 18px; 
+}
+
+div.mf_container ol.mf_list li.mf_item {
+	color: #fff;
+	border: 1px solid #259cf0 ;	
+	display: inline-block;
+	background-color: #259cf0;
+	margin: 0 0 0 5px;
+	padding: 0 5px;
+	border-radius: 20px;
+}
+/* Selected item that's highlighted by mouseover. */
+div.mf_container ol.mf_list li.mf_item.mf_highlighted {
+	background-color: #E0E0E0;	
+}
+/* Selected item that's selected by click or keyboard. */
+div.mf_container ol.mf_list li.mf_item.mf_selected {
+	background-color: #d9534f;
+	color: #fff;
+	border: 1px solid #d9534f ;
+}
+/* Remove link. */
+div.mf_container ol.mf_list li.mf_item a.mf_remove {
+	color: #259cf0;
+	margin-left: 10px;
+	text-decoration: none;
+	display: none;
+}
+/* Remove link that's highlighted. */
+div.mf_container ol.mf_list li.mf_item.mf_highlighted a.mf_remove {
+	color: #FFFFFF;
+}
+/* Remove link that's selected. */
+div.mf_container ol.mf_list li.mf_item.mf_selected a.mf_remove {
+	color: #FFFFFF;
+}
+div.mf_container input.mf_input {
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	margin: 2px;
+	outline: none;
+	padding: 4px;
+}
+
+ol{
+	padding: 0;
+	
+}
+ol.mp_list {	
+	list-style-position: outside;
+	background-color: #FFFFFF;
+	border-left: 1px solid #C0C0C0;
+	border-right: 1px solid #C0C0C0;
+	overflow: hidden;
+	position: absolute;
+	
+	z-index: 99999;
+}
+
+ol.mp_list li {
+	border-bottom: 1px solid #C0C0C0;
+	padding: 4px 4px 5px 9px;
+}
+
+ol.mp_list li.mp_item {
+}
+/* Currently highlighted list item. */
+ol.mp_list li.mp_highlighted {
+	background-color: #E0E0E0;
+}
+ol.mp_list li.mp_no_results {
+}
+ol.mp_list li.mp_min_chars {
+}
+ol.mp_list li.mp_error {
+}

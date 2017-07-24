@@ -79,6 +79,25 @@ nav.mui-bar-tab > .mui-active span {
   font-size: 16px;
 }
 
+.mui-input-group .mui-input-row {
+  height: auto;
+}
+.mui-input-group .mui-input-row label {
+  color: #999;
+  font-size: 16px;
+  width: 25%;
+}
+.mui-input-group .mui-input-row input {
+  width: 75%;
+  height: auto !important;
+}
+.mui-input-group .mui-input-row textarea {
+  height: auto;
+}
+.mui-input-group .mui-input-row::after, .mui-input-group .mui-input-row::before {
+  background: #f8f8f8;
+}
+
 .mui-bar-nav {
   box-shadow: none;
 }

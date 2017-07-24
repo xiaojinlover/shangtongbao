@@ -9,19 +9,38 @@
 		<link rel="stylesheet" href="dist/css/mui.css">
 		<link rel="stylesheet" href="dist/css/style.css">
 		<link rel="stylesheet" href="css/iconfont.css">
+		<link rel="stylesheet" href="lib/email.css">
 		<title>商路通</title>
 		<style>			
-		</style>
+		</style> 
 	</head>
 
 	<body id="write-email">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-btn mui-btn-link mui-pull-left mui-action-back text-white">取消</a>
 			<h1 class="mui-title">新邮件</h1>
-			<a class="mui-btn mui-btn-link mui-pull-right text-white">确定</a>
+			<a class="mui-btn mui-btn-link mui-pull-right text-white" id="btn-send">确定</a>
 		</header>
 		<div class="mui-content">
 			
+			<form class="mui-input-group">
+				<div class="mui-input-row">    
+					<label>收件人</label>
+					<input type="text" name="shoujianren" id="shou-jian-ren">				
+				</div>
+				<div class="mui-input-row">
+					<label>抄送</label>
+					<input type="text" />
+				</div>
+				<div class="mui-input-row">
+					<label>密送</label>
+					<input type="text" />
+				</div>
+				<div class="mui-input-row">
+					<label>标题</label>
+					<input type="text" />
+				</div>
+			</form>
 
 		</div>
 
@@ -31,13 +50,21 @@
 	</script>
 	<script src="dist/js/mui.js"></script>
 	<script src="js/common.js"></script>
+	<script src="lib/jquery.min.js"></script>
+    <script src="lib/jquery.ui.widget.min.js"></script>
+    <script src="lib/jquery.marcopolo.min.js"></script>
+    <script src="lib/jquery.manifest.js"></script>
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能		
 		});
-
+		$('#shou-jian-ren').manifest({
+			formatValue: function (data, $value, $item, $mpItem) {
+				console.log($value);
+			},
+		});
 		mui.plusReady(function() {
-
+			
 		})
 	</script>
 
