@@ -1,4 +1,5 @@
 $blue:#259cf0;
+
 header.mui-bar{
 	background:$blue;
 	h1.mui-title{
@@ -103,7 +104,12 @@ nav.mui-bar-tab{
 	.mui-content{
 		.mui-input-group{
 			.mui-input-row{
-				
+				input{
+					width: 75%;
+				}
+				label{
+					width: 25%
+				}
 			}
 		}
 	}
@@ -114,11 +120,9 @@ nav.mui-bar-tab{
 		height: auto;
 		label{
 			color:#999;
-			font-size: 16px;
-			width: 25%
+			font-size: 16px;			
 		}
-		input{
-			width: 75%;
+		input{			
 			height: auto !important;
 		}
 		textarea{
@@ -445,7 +449,9 @@ nav.mui-bar-tab{
 .size16{
 	font-size: 16px !important;
 }
-
+.text-danger{
+	color:#ff7060 !important;
+}
 
 
 

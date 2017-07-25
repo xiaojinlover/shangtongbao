@@ -11,7 +11,10 @@
 		<link rel="stylesheet" href="css/iconfont.css">
 		<link rel="stylesheet" href="lib/email.css">
 		<title>商路通</title>
-		<style>			
+		<style>	
+			#content{
+				min-height: 200px;
+			}		
 		</style> 
 	</head>
 
@@ -26,20 +29,24 @@
 			<form class="mui-input-group">
 				<div class="mui-input-row">    
 					<label>收件人</label>
-					<input type="text" name="shoujianren" id="shou-jian-ren">				
+					<input type="text" name="shoujianren" id="shou-jian-ren" />		
+					<input type="hidden" name="shou-jian-ren" />
 				</div>
 				<div class="mui-input-row">
 					<label>抄送</label>
-					<input type="text" />
+					<input type="text" name="chaosongren" id="chao-song-ren" />		
+					<input type="hidden" name="chao-song-ren" />
 				</div>
 				<div class="mui-input-row">
 					<label>密送</label>
-					<input type="text" />
+					<input type="text" name="misongren" id="mi-song-ren" />		
+					<input type="hidden" name="mi-song-ren" />
 				</div>
 				<div class="mui-input-row">
 					<label>标题</label>
 					<input type="text" />
 				</div>
+				<div id="content"></div>
 			</form>
 
 		</div>
@@ -54,17 +61,82 @@
     <script src="lib/jquery.ui.widget.min.js"></script>
     <script src="lib/jquery.marcopolo.min.js"></script>
     <script src="lib/jquery.manifest.js"></script>
+    <script src="js/arteditor.js"></script>
+    
+    
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能		
 		});
+		//收件人
 		$('#shou-jian-ren').manifest({
-			formatValue: function (data, $value, $item, $mpItem) {
-				console.log($value);
+			formatValue: function (data) {
+				if($('input[name="shou-jian-ren"]').val()==''){
+					$('input[name="shou-jian-ren"]').val(data);
+				}else{
+					var arr = $('input[name="shou-jian-ren"]').val().split(",");
+					if($.inArray(data,arr)=='-1') {
+						$('input[name="shou-jian-ren"]').val($('input[name="shou-jian-ren"]').val()+','+data);
+					}else{
+						mui.toast('请不要重复输入');
+						$('input[name="shou-jian-ren"]').val($('input[name="shou-jian-ren"]').val()+','+data);
+					}					
+				}
 			},
+			onRemove:function(data){
+				var arr = $('input[name="shou-jian-ren"]').val().split(",");				
+				arr.splice($.inArray(data,arr),1);
+				$('input[name="shou-jian-ren"]').val(arr);
+			}
 		});
+		//抄送人
+		$('#chao-song-ren').manifest({
+			formatValue: function (data) {
+				if($('input[name="chao-song-ren"]').val()==''){
+					$('input[name="chao-song-ren"]').val(data);
+				}else{
+					var arr = $('input[name="chao-song-ren"]').val().split(",");
+					if($.inArray(data,arr)=='-1') {
+						$('input[name="chao-song-ren"]').val($('input[name="chao-song-ren"]').val()+','+data);
+					}else{
+						mui.toast('请不要重复输入');
+						$('input[name="chao-song-ren"]').val($('input[name="chao-song-ren"]').val()+','+data);
+					}					
+				}
+			},
+			onRemove:function(data){
+				var arr = $('input[name="chao-song-ren"]').val().split(",");				
+				arr.splice($.inArray(data,arr),1);
+				$('input[name="chao-song-ren"]').val(arr);
+			}
+		});
+		//密送人
+		$('#mi-song-ren').manifest({
+			formatValue: function (data) {
+				if($('input[name="mi-song-ren"]').val()==''){
+					$('input[name="mi-song-ren"]').val(data);
+				}else{
+					var arr = $('input[name="mi-song-ren"]').val().split(",");
+					if($.inArray(data,arr)=='-1') {
+						$('input[name="mi-song-ren"]').val($('input[name="mi-song-ren"]').val()+','+data);
+					}else{
+						mui.toast('请不要重复输入');
+						$('input[name="mi-song-ren"]').val($('input[name="mi-song-ren"]').val()+','+data);
+					}					
+				}
+			},
+			onRemove:function(data){
+				var arr = $('input[name="mi-song-ren"]').val().split(",");				
+				arr.splice($.inArray(data,arr),1);
+				$('input[name="mi-song-ren"]').val(arr);
+			}
+		});
+		
+		$('#content').artEditor();
 		mui.plusReady(function() {
-			
+			$('#btn-send').on('click',function(){
+				
+			})
 		})
 	</script>
 

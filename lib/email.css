@@ -26,9 +26,9 @@ div.mf_container ol.mf_list li.mf_item.mf_highlighted {
 }
 /* Selected item that's selected by click or keyboard. */
 div.mf_container ol.mf_list li.mf_item.mf_selected {
-	background-color: #d9534f;
+	background-color: #ff7060;
 	color: #fff;
-	border: 1px solid #d9534f ;
+	border: 1px solid #ff7060 ;
 }
 /* Remove link. */
 div.mf_container ol.mf_list li.mf_item a.mf_remove {

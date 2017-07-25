@@ -79,16 +79,21 @@ nav.mui-bar-tab > .mui-active span {
   font-size: 16px;
 }
 
+#write-email .mui-content .mui-input-group .mui-input-row input {
+  width: 75%;
+}
+#write-email .mui-content .mui-input-group .mui-input-row label {
+  width: 25%;
+}
+
 .mui-input-group .mui-input-row {
   height: auto;
 }
 .mui-input-group .mui-input-row label {
   color: #999;
   font-size: 16px;
-  width: 25%;
 }
 .mui-input-group .mui-input-row input {
-  width: 75%;
   height: auto !important;
 }
 .mui-input-group .mui-input-row textarea {
