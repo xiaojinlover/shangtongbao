@@ -79,6 +79,9 @@ nav.mui-bar-tab > .mui-active span {
   font-size: 16px;
 }
 
+#write-email .mui-content .mui-input-group .mui-input-row {
+  position: relative;
+}
 #write-email .mui-content .mui-input-group .mui-input-row input {
   width: 75%;
 }
@@ -86,6 +89,9 @@ nav.mui-bar-tab > .mui-active span {
   width: 25%;
 }
 
+.mui-input-group::after {
+  background: #f0f0f0;
+}
 .mui-input-group .mui-input-row {
   height: auto;
 }
@@ -95,12 +101,16 @@ nav.mui-bar-tab > .mui-active span {
 }
 .mui-input-group .mui-input-row input {
   height: auto !important;
+  font-size: 16px;
+  color: #666;
 }
 .mui-input-group .mui-input-row textarea {
   height: auto;
+  font-size: 16px;
+  color: #666;
 }
 .mui-input-group .mui-input-row::after, .mui-input-group .mui-input-row::before {
-  background: #f8f8f8;
+  background: #F0F0F0;
 }
 
 .mui-bar-nav {
@@ -402,6 +412,10 @@ nav.mui-bar-tab > .mui-active span {
     transform: translate3d(0, -100%, 0);
   }
 }
+.mui-table-view-divider::after, .mui-table-view-divider::before {
+  background: #f5f5f5;
+}
+
 .text-333 {
   color: #333 !important;
 }
@@ -432,6 +446,10 @@ nav.mui-bar-tab > .mui-active span {
 
 .size16 {
   font-size: 16px !important;
+}
+
+.text-danger {
+  color: #ff7060 !important;
 }
 
 /*# sourceMappingURL=style.css.map */

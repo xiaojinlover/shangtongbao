@@ -9,28 +9,44 @@
 		<link rel="stylesheet" href="dist/css/mui.css">
 		<link rel="stylesheet" href="dist/css/style.css">
 		<link rel="stylesheet" href="css/iconfont.css">
-		<link rel="stylesheet" href="lib/email.css">
+		<link rel="stylesheet" href="lib/email.css">	
+		
+		<link rel="stylesheet" href="lib/dist/css/wangEditor-mobile.css">
+		
 		<title>商路通</title>
-		<style>	
-			#content{
-				min-height: 200px;
-			}		
-		</style> 
+		<style>
+			*{			   
+			    -webkit-user-select: text;			   
+			}	
+			.wangEditor-mobile-menu-container{
+				display: none!important;
+			}
+			.container{
+				font-size: 16px;
+				color: #666;
+				min-height: 150px;
+			}
+			textarea{
+				min-height: 150px;  
+			}
+		</style>
 	</head>
 
 	<body id="write-email">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-btn mui-btn-link mui-pull-left mui-action-back text-white">取消</a>
 			<h1 class="mui-title">新邮件</h1>
-			<a class="mui-btn mui-btn-link mui-pull-right text-white" id="btn-send">确定</a>
+			<a class="mui-btn mui-btn-link mui-pull-right text-white" id="btn-send">确定</a> 
 		</header>
 		<div class="mui-content">
 			
 			<form class="mui-input-group">
+				<div class="mui-table-view-divider"></div>
 				<div class="mui-input-row">    
 					<label>收件人</label>
 					<input type="text" name="shoujianren" id="shou-jian-ren" />		
-					<input type="hidden" name="shou-jian-ren" />
+					<input type="hidden" name="shou-jian-ren" /> 
+					<a><i class=""></i></a>
 				</div>
 				<div class="mui-input-row">
 					<label>抄送</label>
@@ -46,7 +62,10 @@
 					<label>标题</label>
 					<input type="text" />
 				</div>
-				<div id="content"></div>
+				<div class="mui-table-view-divider"></div>
+				<div class="container">
+					<textarea id="textarea1" style="width:100%;height:100%;">请输入邮件内容</textarea> 
+				</div>
 			</form>
 
 		</div>
@@ -57,17 +76,24 @@
 	</script>
 	<script src="dist/js/mui.js"></script>
 	<script src="js/common.js"></script>
+	
 	<script src="lib/jquery.min.js"></script>
+	
     <script src="lib/jquery.ui.widget.min.js"></script>
     <script src="lib/jquery.marcopolo.min.js"></script>
     <script src="lib/jquery.manifest.js"></script>
-    <script src="js/arteditor.js"></script>
+	
+	<script src="lib/dist/js/lib/zepto.js"></script>
+	<script src="lib/dist/js/lib/zepto.touch.js"></script>
+	<script src="lib/dist/js/wangEditor-mobile.js"></script> 
     
     
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能		
 		});
+		document.documentElement.style.webkitTouchCallout = "none"; 
+		document.documentElement.style.webkitUserSelect = "none"
 		//收件人
 		$('#shou-jian-ren').manifest({
 			formatValue: function (data) {
@@ -132,10 +158,14 @@
 			}
 		});
 		
-		$('#content').artEditor();
+		
+		
 		mui.plusReady(function() {
+			var editor = new ___E('textarea1');			
+	   		editor.init();
+	   		var text = editor.$txt;
 			$('#btn-send').on('click',function(){
-				
+			alert(text.html())
 			})
 		})
 	</script>

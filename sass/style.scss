@@ -104,6 +104,8 @@ nav.mui-bar-tab{
 	.mui-content{
 		.mui-input-group{
 			.mui-input-row{
+				position: relative;
+				
 				input{
 					width: 75%;
 				}
@@ -115,7 +117,9 @@ nav.mui-bar-tab{
 	}
 }
 .mui-input-group{
-	
+	&::after{
+		background: #f0f0f0;
+	}
 	.mui-input-row{
 		height: auto;
 		label{
@@ -124,12 +128,16 @@ nav.mui-bar-tab{
 		}
 		input{			
 			height: auto !important;
+			font-size: 16px;
+			color: #666;
 		}
 		textarea{
 			height:auto;
+			font-size: 16px;
+			color: #666;
 		}
 		&::after,&::before{
-			background:#f8f8f8;		
+			background:#F0F0F0;		
 		}
 	}
 }
@@ -422,6 +430,11 @@ nav.mui-bar-tab{
 		opacity: 0;
 		-webkit-transform: translate3d(0, -100%, 0);
 		transform: translate3d(0, -100%, 0);
+	}
+}
+.mui-table-view-divider{
+	&::after,&::before{
+		background:#f5f5f5
 	}
 }
 //辅助类
