@@ -80,6 +80,7 @@ nav.mui-bar-tab > .mui-active span {
 }
 
 #write-email .mui-content .mui-input-group .mui-input-row {
+  padding-right: 50px;
   position: relative;
 }
 #write-email .mui-content .mui-input-group .mui-input-row input {
@@ -87,6 +88,14 @@ nav.mui-bar-tab > .mui-active span {
 }
 #write-email .mui-content .mui-input-group .mui-input-row label {
   width: 25%;
+}
+#write-email .mui-content .mui-input-group .mui-input-row > a {
+  position: absolute;
+  right: 15px;
+  top: 8px;
+}
+#write-email .mui-content .mui-input-group .mui-input-row > a i {
+  font-size: 22px;
 }
 
 .mui-input-group::after {

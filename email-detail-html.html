@@ -38,8 +38,8 @@
 					if((data.back.htmlbody!=''))
 						document.write(data.back.htmlbody);
 					else
-						document.write(data.back.textBody)
-					document.body.style.marginBottom = '220px'
+						document.write(data.back.textBody)					
+					document.body.style.marginTop = '15px';					
 				},
 				beforeSend: function() {
 					plus.nativeUI.showWaiting("玩命加载中...", {
@@ -50,8 +50,8 @@
 					plus.nativeUI.closeWaiting();
 				},
 				error: function(xhr, typeinfo) {
-					mui.alert("参数错误：" + typeinfo);
-				}
+					mui.alert("参数错误：" + typeinfo);  
+				} 
 			});
 			
 		})

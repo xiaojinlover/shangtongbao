@@ -44,9 +44,9 @@
 				<div class="mui-table-view-divider"></div>
 				<div class="mui-input-row">    
 					<label>收件人</label>
-					<input type="text" name="shoujianren" id="shou-jian-ren" />		
+					<input type="text" name="shoujianren" id="shou-jian-ren" /> 
 					<input type="hidden" name="shou-jian-ren" /> 
-					<a><i class=""></i></a>
+					<a href="select-user"><i class="iconfont icon-xiao63"></i></a>
 				</div>
 				<div class="mui-input-row">
 					<label>抄送</label>
@@ -92,8 +92,7 @@
 		mui.init({
 			swipeBack: true //启用右滑关闭功能		
 		});
-		document.documentElement.style.webkitTouchCallout = "none"; 
-		document.documentElement.style.webkitUserSelect = "none"
+		
 		//收件人
 		$('#shou-jian-ren').manifest({
 			formatValue: function (data) {

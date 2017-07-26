@@ -116,7 +116,7 @@
 					top: '85px',
 					bottom: 0,
 					width: '100%',
-					height: '100%',
+					height: 'auto',
 					scalable: true,
 				},
 				extras: {
@@ -133,7 +133,6 @@
 		});
 
 		mui.plusReady(function() {
-
 			var emailDetailHtml = plus.webview.getWebviewById('email-detail-html');
 
 			var FromName = plus.webview.currentWebview().FromName; //发件人姓名
