@@ -35,8 +35,9 @@
 				type: 'post',
 				timeout: 10000,
 				success: function(data) {
+					
 					if((data.back.htmlbody!=''))
-						document.write(data.back.htmlbody);
+						document.write('<meta name="viewport" content="width=device-width,initial-scale=1" />'+data.back.htmlbody);
 					else
 						document.write(data.back.textBody)					
 					document.body.style.marginTop = '15px';					
