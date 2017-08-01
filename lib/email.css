@@ -13,9 +13,9 @@ div.mf_container ol.mf_list {
 
 div.mf_container ol.mf_list li.mf_item {
 	color: #fff;
-	border: 1px solid #259cf0 ;	
+	border: 1px solid #ff7060 ;	
 	display: inline-block;
-	background-color: #259cf0;
+	background-color: #ff7060;
 	margin: 0 0 0 5px;
 	padding: 0 5px;
 	border-radius: 20px;
@@ -26,9 +26,9 @@ div.mf_container ol.mf_list li.mf_item.mf_highlighted {
 }
 /* Selected item that's selected by click or keyboard. */
 div.mf_container ol.mf_list li.mf_item.mf_selected {
-	background-color: #ff7060;
+	background-color: #259cf0;
 	color: #fff;
-	border: 1px solid #ff7060 ;
+	border: 1px solid #259cf0 ;
 }
 /* Remove link. */
 div.mf_container ol.mf_list li.mf_item a.mf_remove {

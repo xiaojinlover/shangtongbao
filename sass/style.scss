@@ -125,6 +125,7 @@ nav.mui-bar-tab{
 		}
 	}
 }
+
 .mui-input-group{
 	&::after{
 		background: #f0f0f0;
@@ -154,7 +155,30 @@ nav.mui-bar-tab{
 	box-shadow: none;
 }
 
-
+#select-user{
+    .mui-content{
+        .mui-indexed-list-inner{
+            .mui-table-view{
+                .mui-table-view-cell{
+                    .mui-media-body{
+                        font-size: 16px;
+                        color: #666;
+                        .mui-ellipsis{
+                            
+                        }
+                    }
+                    >input{
+                        top:20px!important;  
+                                               
+                    }
+                    .mui-radio input[type='radio']:checked:before, .mui-checkbox input[type='checkbox']:checked:before {
+                        color: $blue; 
+                    }
+                }                
+            }
+        }
+    }
+}
 /***下拉菜单***/
 	.menu-backdrop {
 		display: none;

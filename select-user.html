@@ -9,46 +9,157 @@
 		<link rel="stylesheet" href="dist/css/mui.css">
 		<link rel="stylesheet" href="dist/css/style.css">
 		<link rel="stylesheet" href="css/iconfont.css">
-		
+		<link href="css/mui.indexedlist.css" rel="stylesheet" /> 
 		<title>商路通</title>
-		
+		<style>
+			html,
+			body,
+			.mui-content,
+			.mui-indexed-list{
+				height: 100%;				 
+			}
+			#pullrefresh{
+				padding-top: 35px; 
+			}			
+		    .mui-indexed-list-item {
+			    padding-right: 25px !important;
+			}
+			.mui-bar-tab ~ .mui-content {
+			    padding-bottom: 0px;
+			}
+		</style>
 	</head>
 
-	<body id="write-email">
+	<body id="select-user">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-btn mui-btn-link mui-pull-left mui-action-back text-white">取消</a>
 			<h1 class="mui-title">选择联系人</h1>
-			<a class="mui-btn mui-btn-link mui-pull-right text-white" id="btn-send">确定</a> 
+			<a class="mui-btn mui-btn-link mui-pull-right text-white" id="select-user-list">确定</a>
 		</header>
 		<div class="mui-content">
-			
-			<ul class="mui-table-view" id="user-list">
-				
-				<li class="mui-table-view-cell mui-checkbox mui-right mui-media">
-					<img class="mui-media-object mui-pull-left" src="images/test02.png">
-					<div class="mui-media-body">
-						江许进
-						<p class='mui-ellipsis'>运营总监</p>
-					</div>
-					<input name="userid" type="checkbox">
-				</li>
-			</ul>
+			<div id='list' class="mui-indexed-list">
+				<div class="mui-indexed-list-search mui-input-row mui-search">
+					<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索">
+				</div>
+				<div class="mui-indexed-list-bar mui-hidden">
+					<a>A</a>
+					<a>B</a>
+					<a>C</a>
+					<a>D</a>
+					<a>E</a>
+					<a>F</a>
+					<a>G</a>
+					<a>H</a>
+					<a>I</a>
+					<a>J</a>
+					<a>K</a>
+					<a>L</a>
+					<a>M</a>
+					<a>N</a>
+					<a>O</a>
+					<a>P</a>
+					<a>Q</a>
+					<a>R</a>
+					<a>S</a>
+					<a>T</a>
+					<a>U</a>
+					<a>V</a>
+					<a>W</a>
+					<a>X</a>
+					<a>Y</a>
+					<a>Z</a>
+				</div>
+				<div class="mui-indexed-list-alert"></div>
+				<div class="mui-indexed-list-inner">
+					<div class="mui-indexed-list-empty-alert">没有数据</div>
+					<ul class="mui-table-view" id="user-list">
+						<!--<li class="mui-table-view-cell mui-checkbox mui-right mui-media">								
+							<div class="mui-media-body">
+								江许进
+								<p class="mui-ellipsis">运营总监</p>  
+							</div>
+							<input name="userid" type="checkbox"> 
+						</li>--> 
+					</ul>		
+				</div>
+			</div>
 		</div>
-
 	</body>
 	<script>
 		var h5pullDown = true;
 	</script>
-	<script src="dist/js/mui.js"></script>
+	<script src="dist/js/mui.js"></script> 
 	<script src="js/common.js"></script>
-	
-    
+	<script src="js/mui.indexedlist.js"></script> 
+	<script src="js/jquery-2.0.2.min.js"></script> 
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能		
 		});
-		mui.plusReady(function() {			
-	   		
+		
+		mui.plusReady(function() {
+			//选择联系人
+			mui(document).on('tap','#select-user-list',function(){
+			var action = plus.webview.currentWebview().action;
+			var usersArray = [];
+				var i = 0
+				mui.each(mui('input[type="checkbox"]'),function(index,item){					
+					if(item.checked){						
+						usersArray[i] = $(this).parent().find('span').html()+' &lt;' + $(this).parent().find('.mui-ellipsis').html() + '&gt;';		
+//						usersArray[i] = $(this).parent().find('.mui-ellipsis').html();
+						i++;
+					}
+					
+				})
+				
+				
+				var writeEmail = plus.webview.currentWebview().opener();
+				mui.fire(writeEmail,'insertUser',{					
+					action:action,					
+					usersArray:usersArray
+				});
+				mui.back()
+				
+			})
+			//获取联系人
+			var getUserData = {
+				UserId: "admin",
+				Password: "96E79218965EB72C92A549DD5A330112",
+				Ran: 123,
+				Sign: "4297F44B13955235245B2497399D7A93",
+				pageindex: 1,
+				pagemax: 10000
+			};
+			mui.ajax(apiUrl + '/api/contact/Get/', {
+				data: getUserData,
+				type: 'post',
+				timeout: 10000,
+				success: function(data) {
+					var userHtml = '';
+					mui.each(data.back.list,function(index,item){
+						if(item.Email!='')
+							userHtml += '<li class="mui-table-view-cell mui-checkbox mui-right mui-media"><div class="mui-media-body"><span>' + item.Name + '</span><p class="mui-ellipsis">' + (item.Email==''?"暂无":item.Email) + '</p></div><input name="userid" type="checkbox"></li>'
+					})
+					document.getElementById('user-list').innerHTML = userHtml
+					//索引列表
+					var header = document.querySelector('header.mui-bar'); 
+					var nav = document.querySelector("nav");
+					var list = document.getElementById('list');
+					list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
+					window.indexedList = new mui.IndexedList(list);
+				},
+				beforeSend: function() {
+					plus.nativeUI.showWaiting("玩命加载中...", {
+						background: "rgba(0,0,0,0.4)"
+					});
+				},
+				complete: function() {
+					plus.nativeUI.closeWaiting();
+				},
+				error: function(xhr, typeinfo) {
+					mui.alert("参数错误：" + typeinfo);
+				}
+			});
 		})
 	</script>
 

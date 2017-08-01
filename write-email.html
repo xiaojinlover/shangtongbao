@@ -65,7 +65,7 @@
 				</div>
 				<div class="mui-input-row">
 					<label>标题</label>
-					<input type="text" />
+					<input type="text" name="subject" />
 				</div>
 				<div class="mui-table-view-divider"></div>
 				<div class="container">
@@ -160,7 +160,7 @@
 				$('input[name="mi-song-ren"]').val(arr);
 			}
 		});
-
+	
 		mui.plusReady(function() {
 			var editor = new ___E('textarea1');
 			editor.init();
@@ -172,8 +172,11 @@
 			$('input').blur(function() {
 				$(this).parent().siblings('a').addClass('mui-hidden');
 			})
+			
 			mui('.mui-input-group').on('tap','a',function(e){
+				document.activeElement.blur(); 
 	   			var href = this.getAttribute('href');
+	   			var action = this.getAttribute('data-action')
 	   			mui.openWindow({
 					url:href + '.html',
 					id: href, 
@@ -183,13 +186,102 @@
 						aniShow: "slide-in-bottom"
 					
 					},
+					extras:{
+						action:action
+					},
 					waiting: {
 						autoShow: false,
 						title: '玩命加载中...'
 					},
 				})
 			})
-
+			//插入联系人
+			function insertUser(e){				
+				$('#'+e.detail.action).manifest({
+					values:e.detail.usersArray
+				})
+			}
+			window.addEventListener('insertUser',insertUser);
+			
+			//发送邮件
+			mui('.mui-bar').on('tap','#btn-send',function(){
+				
+				var addEmailData = {
+						UserId: plus.storage.getItem('UserId'),
+						Password: plus.storage.getItem('Password'),
+						Ran: plus.storage.getItem('Ran'),
+						Sign: plus.storage.getItem('Sign'),
+						mailid: 0,
+						check: 1,
+						Subject: $('input[name="subject"]').val(), 
+						itTo: html_decode($('input[name="shou-jian-ren"]').val()), 
+						cc: html_decode($('input[name="chao-song-ren"]').val()),
+						Bcc:html_decode($('input[name="mi-song-ren"]').val()),
+						TextBody:'',
+						HtmlBody:text.html(),
+						
+						itFrom:"jxuj <jxuj@sina.com>",
+						Inside:null,
+						ReplyTo:'',
+						fileid:''
+				} 	
+				
+				mui.ajax(apiUrl + '/api/mail/Add/', {
+					data: addEmailData,
+					type: 'post',
+					timeout: 10000,
+					success: function(data) {
+						console.log(JSON.stringify(data))
+//						alert(data.back.id)
+						if(data.back.msg=="新建邮件成功"){
+							var sendEmailData = {
+									UserId: plus.storage.getItem('UserId'),
+									Password: plus.storage.getItem('Password'),
+									Ran: plus.storage.getItem('Ran'),
+									Sign: plus.storage.getItem('Sign'),
+									mailid: data.back.id
+//									check: 1,
+//									Subject: $('input[name="subject"]').val(), 
+//									itTo: $('input[name="shou-jian-ren"]').val(), 
+//									cc: $('input[name="chao-song-ren"]').val(),
+//									Bcc:$('input[name="mi-song-ren"]').val(),
+//									TextBody:'',
+//									HtmlBody:text.html()
+							} 	
+							mui.ajax(apiUrl + '/api/mail/send/', {
+								data: sendEmailData,
+								type: 'post',
+								timeout: 10000,
+								success: function(data) {
+									console.log(JSON.stringify(data))
+								},
+								beforeSend: function() {
+									plus.nativeUI.showWaiting("发送邮件中...", {
+										background: "rgba(0,0,0,0.5)"
+									});
+								},
+								complete: function() {
+									plus.nativeUI.closeWaiting();
+								},
+								error: function(xhr, typeinfo, errorThrown) {
+									mui.alert("参数错误：" + typeinfo);
+								}
+							}); 
+						}
+					},
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("新建邮件中...", {
+							background: "rgba(0,0,0,0.5)"
+						});
+					},
+					complete: function() {						
+						plus.nativeUI.closeWaiting();
+					},
+					error: function(xhr, typeinfo, errorThrown) {
+						mui.alert("参数错误：" + typeinfo);
+					}
+				}); 
+			})
 		})
 	</script>
 
