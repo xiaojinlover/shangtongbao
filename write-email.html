@@ -218,15 +218,10 @@
 						cc: html_decode($('input[name="chao-song-ren"]').val()),
 						Bcc:html_decode($('input[name="mi-song-ren"]').val()),
 						TextBody:'',
-						HtmlBody:text.html(),
-						
-						itFrom:"jxuj <jxuj@sina.com>",
-						Inside:null,
-						ReplyTo:'',
-						fileid:''
+						HtmlBody:text.html()
 				} 	
 				
-				mui.ajax(apiUrl + '/api/mail/Add/', {
+				mui.ajax(apiUrl + '/api/mail/Add/', { 
 					data: addEmailData,
 					type: 'post',
 					timeout: 10000,

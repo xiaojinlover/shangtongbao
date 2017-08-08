@@ -98,6 +98,87 @@ nav.mui-bar-tab > .mui-active span {
   font-size: 22px;
 }
 
+#login {
+  background: #259cf0;
+}
+#login .mui-content {
+  background: #259cf0;
+}
+#login .mui-content .btn-qiye-register {
+  margin-top: 4%;
+  color: #fff;
+}
+#login .mui-content .logo {
+  text-align: center;
+}
+#login .mui-content .logo img {
+  width: 100px;
+  margin: 100px auto 12px auto;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+#login .mui-content .logo p {
+  color: #fff;
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+#login .mui-content .mui-content-padded {
+  margin: 0 7%;
+}
+#login .mui-content .mui-content-padded .mui-btn {
+  border: 1px solid #fff;
+}
+#login .mui-content .mui-content-padded .mui-btn-outlined {
+  color: #fff;
+}
+#login .mui-content .mui-content-padded > .mui-input-group {
+  background: none !important;
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row::after {
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+#login .mui-content .mui-content-padded > .mui-input-group .btn-login {
+  margin-top: 30px;
+  color: #259cf0;
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row {
+  margin: 5% 0 0 0;
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row label {
+  width: 20%;
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row label i {
+  font-size: 24px;
+  line-height: 20px;
+  color: #fff;
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row input {
+  color: #fff;
+  width: 80%;
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row .mui-icon-clear::before {
+  color: rgba(255, 255, 255, 0.8);
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#login .mui-content .mui-content-padded > .mui-input-group .mui-input-row input:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#login .mui-content .mui-content-padded > .mui-input-group:before {
+  height: 0;
+}
+#login .mui-content .mui-content-padded > .mui-input-group:after {
+  height: 0;
+}
+
+.mui-btn-block {
+  padding: 10px 0;
+}
+
 .mui-input-group::after {
   background: #f0f0f0;
 }

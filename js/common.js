@@ -34,3 +34,24 @@ mui.plusReady(function() {
 	plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");
 })
 
+
+//plus.storage.setItem("UserId", 'admin');
+//plus.storage.setItem("Password", '96E79218965EB72C92A549DD5A330112');
+plus.storage.setItem("Ran", '123');
+plus.storage.setItem("Sign", '4297F44B13955235245B2497399D7A93');
+
+if(plus.storage.getItem('UserId')==null&&plus.webview.currentWebview().id!='login'){
+	mui.openWindow({
+		url: 'login.html',
+		id: 'login',
+		createNew: false,
+		show: {
+			autoShow: false,
+			aniShow: false,
+			duration: 200
+		},
+		waiting: {
+			autoShow: false
+		}
+	}) 
+}

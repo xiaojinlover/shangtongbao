@@ -125,7 +125,86 @@ nav.mui-bar-tab{
 		}
 	}
 }
-
+#login{    
+    background:$blue;  
+    .mui-content{
+        .btn-qiye-register{
+            margin-top: 4%;
+            color:#fff;
+        }
+        background:$blue;
+        .logo{           
+            text-align:center;
+            img{
+                width:100px; 
+                margin: 100px auto 12px auto; 
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;          
+            }
+            p{
+                color: #fff;
+                font-size: 20px;
+                font-weight: normal;
+                margin-bottom: 20px;
+            }
+        } 
+        .mui-content-padded{
+            margin:0 7%;
+            .mui-btn{
+                border:1px solid #fff;
+            }
+            .mui-btn-outlined{
+                color:#fff;
+            }
+            >.mui-input-group{
+                .mui-input-row::after{
+                    left: 0px;
+                    background-color: rgba(255,255,255,.3) !important;
+                }
+                .btn-login{
+                    margin-top: 30px; 
+                    color: $blue;
+                }
+                .mui-input-row{
+                    margin:5% 0 0 0;
+                    label{
+                        width:20%;
+                        i{
+                            font-size:24px;
+                            line-height:20px;
+                            color:#fff;
+                        }
+                    }
+                    input{
+                        color:#fff;
+                        width:80%;
+                    }
+                    .mui-icon-clear::before{
+                        color: rgba(255,255,255,0.8);
+                    }
+                    input::-webkit-input-placeholder {
+                        color:rgba(255,255,255,.4);
+                    }
+                    input:-moz-placeholder {
+                        color: rgba(255,255,255,.4);
+                    }
+                    
+                }
+                background:none !important;
+                &:before{
+                    height:0;
+                }
+                &:after{
+                    height:0;
+                }
+            }
+        }
+    }
+}
+.mui-btn-block{
+    padding: 10px 0;
+}
 .mui-input-group{
 	&::after{
 		background: #f0f0f0;
