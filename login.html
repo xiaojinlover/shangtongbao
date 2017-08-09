@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="misapplication-tap-highlight" content="no" />
+		<meta name="HandheldFriendly" content="true" />
+		<link rel="stylesheet" href="dist/css/mui.css">
+		<link rel="stylesheet" href="dist/css/style.css">
+		<link rel="stylesheet" href="css/iconfont.css">
+		<title>商路通</title>
+		
+	</head>
+ 
+	<body id="login">
+	<div class="mui-content">   
+			<div class="logo"> 
+				<img src="images/logo.jpg" />     
+				<p>商路通</p>
+			</div>      
+			<div class="mui-content-padded"> 
+				<form class="mui-input-group">  
+					<div class="mui-input-row">
+						<label><i class="icon iconfont icon-zhanghao"></i></label>
+						<input name="username" type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					</div>
+					<div class="mui-input-row"> 
+						<label><i class="icon iconfont icon-xiugaimima"></i></label>
+						<input name="password" type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+					</div>
+					<a class="mui-btn mui-btn-block btn-login" id="btn-login">登录</a>    
+				</form>				
+			</div> 
+		</div>
+	</body>
+	<script>
+		var h5pullDown = true;
+	</script>
+	<script src="dist/js/mui.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/md5.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能		
+		});
+
+		mui.plusReady(function(){
+			mui(document).on('tap','#btn-login',function(){
+				var loginData = {
+					UserId: document.forms[0].username.value,
+					Password: hex_md5(document.forms[0].password.value),
+					Ran:plus.storage.getItem('Ran'),
+					Sign:plus.storage.getItem('Sign')
+				}
+				
+				//验证表单
+				if(!document.forms[0].username.value) {
+					mui.alert('请输入您的账号！');
+					return false;
+				} else if(!document.forms[0].password.value) {
+					mui.alert("请输入您的密码！");
+					return false;
+				}
+				
+				mui.ajax(apiUrl +  '/api/user/get', {					
+					data: loginData,
+					type: 'post',
+					timeout: 10000,
+					success: function(data) {
+						console.log(JSON.stringify(data))
+						return false;						
+							mui.openWindow({
+								url: 'index.html',
+								id: 'index',
+								createNew: true,
+								show: {
+									autoShow: true,
+									aniShow: 'slider-in-right',
+									duration: 200
+								},
+								waiting: {
+									autoShow: false
+								}
+							})
+							document.activeElement.blur();
+					},
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("数据提交中...");
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+					},
+					error: function(xhr, typeinfo) {
+						mui.alert(typeinfo);   
+					}
+				});
+			
+			})
+		})
+	</script>
+
+</html>
