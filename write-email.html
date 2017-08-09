@@ -203,7 +203,7 @@
 			}
 			window.addEventListener('insertUser',insertUser);
 			
-			//发送邮件
+			//新建邮件
 			mui('.mui-bar').on('tap','#btn-send',function(){
 				
 				var addEmailData = {
@@ -218,7 +218,8 @@
 						cc: html_decode($('input[name="chao-song-ren"]').val()),
 						Bcc:html_decode($('input[name="mi-song-ren"]').val()),
 						TextBody:'',
-						HtmlBody:text.html()
+						HtmlBody:text.html(),
+						mailboxid:11
 				} 	
 				
 				mui.ajax(apiUrl + '/api/mail/Add/', { 
@@ -227,22 +228,15 @@
 					timeout: 10000,
 					success: function(data) {
 						console.log(JSON.stringify(data))
-						return false;
-//						alert(data.back.id)
+
 						if(data.back.msg=="新建邮件成功"){
+							//发送邮件
 							var sendEmailData = {
 									UserId: plus.storage.getItem('UserId'),
 									Password: plus.storage.getItem('Password'),
 									Ran: plus.storage.getItem('Ran'),
 									Sign: plus.storage.getItem('Sign'),
-									mailid: data.back.id
-//									check: 1,
-//									Subject: $('input[name="subject"]').val(), 
-//									itTo: $('input[name="shou-jian-ren"]').val(), 
-//									cc: $('input[name="chao-song-ren"]').val(),
-//									Bcc:$('input[name="mi-song-ren"]').val(),
-//									TextBody:'',
-//									HtmlBody:text.html()
+									mailid: data.back.id									
 							} 	
 							mui.ajax(apiUrl + '/api/mail/send/', {
 								data: sendEmailData,
@@ -250,6 +244,38 @@
 								timeout: 10000,
 								success: function(data) {
 									console.log(JSON.stringify(data))
+									if(data.back.state==1){
+										//查询邮件发送状态
+										var sendEmailData = {
+												UserId: plus.storage.getItem('UserId'),
+												Password: plus.storage.getItem('Password'),
+												Ran: plus.storage.getItem('Ran'),
+												Sign: plus.storage.getItem('Sign'),
+												key: data.back.key									
+										} 	
+										mui.ajax(apiUrl + '/api/mail/state/', {
+											data: sendEmailData,
+											type: 'post',
+											timeout: 10000,
+											success: function(data) {
+												console.log(JSON.stringify(data))
+												if(data.back.state!=''){
+													mui.alert('邮件发送成功！')
+												}
+											},
+											beforeSend: function() {
+												plus.nativeUI.showWaiting("查询邮件中...", {
+													background: "rgba(0,0,0,0.5)"
+												});
+											},
+											complete: function() {
+												plus.nativeUI.closeWaiting();
+											},
+											error: function(xhr, typeinfo, errorThrown) {
+												mui.alert("参数错误：" + typeinfo);
+											}
+										}); 
+									}
 								},
 								beforeSend: function() {
 									plus.nativeUI.showWaiting("发送邮件中...", {

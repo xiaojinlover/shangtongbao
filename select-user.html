@@ -105,13 +105,11 @@
 				var i = 0
 				mui.each(mui('input[type="checkbox"]'),function(index,item){					
 					if(item.checked){						
-						usersArray[i] = $(this).parent().find('span').html()+' &lt;' + $(this).parent().find('.mui-ellipsis').html() + '&gt;';		
-//						usersArray[i] = $(this).parent().find('.mui-ellipsis').html();
+//						usersArray[i] = $(this).parent().find('span').html()+' &lt;' + $(this).parent().find('.mui-ellipsis').html() + '&gt;';		
+						usersArray[i] = $(this).parent().find('.mui-ellipsis').html();
 						i++;
-					}
-					
-				})
-				
+					}					
+				})				
 				
 				var writeEmail = plus.webview.currentWebview().opener();
 				mui.fire(writeEmail,'insertUser',{					
