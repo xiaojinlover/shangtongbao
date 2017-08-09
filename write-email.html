@@ -232,6 +232,7 @@
 					timeout: 10000,
 					success: function(data) {
 						console.log(JSON.stringify(data))
+						return false;
 //						alert(data.back.id)
 						if(data.back.msg=="新建邮件成功"){
 							var sendEmailData = {
