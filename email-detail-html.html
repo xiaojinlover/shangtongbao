@@ -39,7 +39,7 @@
 					if((data.back.htmlbody!='')){
 						document.write('<meta name="viewport" content="width=device-width" />'+data.back.htmlbody);
 					}else{						
-						document.write('<meta name="viewport" content="width=device-width" />'+data.back.textBody.replace(/\r\n/g,'<br />'));						
+						document.write('<meta name="viewport" content="width=device-width" />'+(data.back.textbody).replace(/\r\n/g,'<br />'));						
 					}
 									
 				},

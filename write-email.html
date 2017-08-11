@@ -162,6 +162,20 @@
 		});
 	
 		mui.plusReady(function() {
+			
+			mui.openWindow({
+		url: 'login.html',
+		id: 'login',
+		createNew: true,
+		show: {
+			autoShow: false,
+			aniShow: false,
+			duration: 200
+		},
+		waiting: {
+			autoShow: false
+		}
+	}) 
 			var editor = new ___E('textarea1');
 			editor.init();
 			var text = editor.$txt;

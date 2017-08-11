@@ -19,7 +19,7 @@
 				<img src="images/logo.jpg" />     
 				<p>商路通</p>
 			</div>      
-			<div class="mui-content-padded"> 
+			<div class="mui-content-padded">  
 				<form class="mui-input-group">  
 					<div class="mui-input-row">
 						<label><i class="icon iconfont icon-zhanghao"></i></label>
@@ -39,7 +39,7 @@
 	</script>
 	<script src="dist/js/mui.js"></script>
 	<script src="js/common.js"></script>
-	<script src="js/md5.js"></script>
+	<script src="js/md5.js"></script> 
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能		
@@ -49,7 +49,7 @@
 			mui(document).on('tap','#btn-login',function(){
 				var loginData = {
 					UserId: document.forms[0].username.value,
-					Password: hex_md5(document.forms[0].password.value),
+					Password: hex_md5(document.forms[0].password.value).toUpperCase(),
 					Ran:plus.storage.getItem('Ran'),
 					Sign:plus.storage.getItem('Sign')
 				}
@@ -68,8 +68,9 @@
 					type: 'post',
 					timeout: 10000,
 					success: function(data) {
-						console.log(JSON.stringify(data))
-						return false;						
+						if(data.back.id){
+							plus.storage.setItem("UserId", document.forms[0].username.value);
+							plus.storage.setItem("Password", hex_md5(document.forms[0].password.value).toUpperCase()); 
 							mui.openWindow({
 								url: 'index.html',
 								id: 'index',
@@ -83,7 +84,11 @@
 									autoShow: false
 								}
 							})
-							document.activeElement.blur();
+							document.activeElement.blur(); 
+						}else{
+							mui.alert(data.back)
+						}
+							
 					},
 					beforeSend: function() {
 						plus.nativeUI.showWaiting("数据提交中...");

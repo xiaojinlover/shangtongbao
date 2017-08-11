@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="misapplication-tap-highlight" content="no" />
+		<meta name="HandheldFriendly" content="true" />
+		<link rel="stylesheet" href="dist/css/mui.css">
+		<link rel="stylesheet" href="dist/css/style.css">
+		<link rel="stylesheet" href="css/iconfont.css">
+		<title>慧人事</title>
+	</head>
+
+	<body id="setting">
+		<header class="mui-bar mui-bar-nav">
+			<a class=" mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">个人设置</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-table-view-item">
+				<!--<li class="mui-table-view-divider"></li>-->
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="setting-shezhi-dlmmxg">
+						登录密码修改
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="setting-shezhi-zfmmxg">
+						支付密码修改
+					</a>
+				</li>
+				<li class="mui-table-view-divider"></li>
+				<li class="mui-table-view-cell">
+					<a href="qing-chu-huan-cun">
+						清除缓存
+					</a>
+				</li>
+				
+				<li class="mui-table-view-divider"></li>
+			</ul>
+			<div class="mui-content-padded">
+				<a class="mui-btn mui-btn-link mui-btn-block" id="btn-login-out">退出登录</a>
+			</div>
+		</div>
+	</body>
+	<script>var h5pullDown = true;</script>
+	<script src="dist/js/mui.js"></script>
+	<script src="js/common.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+
+		});
+		mui.plusReady(function() {
+			//链接
+			mui('.mui-table-view-cell').on('tap', 'a', function(e) {
+				
+				var href = this.getAttribute('href');
+				if(href=='qing-chu-huan-cun'){
+					 plus.cache.clear( function () {
+						mui.alert( "缓存清除成功！" );
+					});
+					 return false;
+				}
+				mui.openWindow({
+					url: href + '.html',
+					id: href,
+					createNew: true,
+					show: {
+						autoShow: true,
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: true,
+						title: '拼命加载中...'
+					},
+
+				})
+			})
+			//退出
+			mui('.mui-content-padded').on('tap','#btn-login-out',function(){
+//				var setting = plus.webview.getWebviewById('setting');
+//				var address = plus.webview.getWebviewById('address');
+//				var index = plus.webview.getWebviewById('index');
+//				var settingshezhi = plus.webview.getWebviewById('setting-shezhi');
+//				var indexboss = plus.webview.getWebviewById('index-boss');
+//				if(setting!=null)
+//					plus.webview.close(setting);
+//				if(address!=null)
+//					plus.webview.close(address);
+//				if(index!=null)
+//					plus.webview.close(index);
+//				if(settingshezhi!=null)
+//					plus.webview.close(settingshezhi);
+//				if(indexboss!=null)
+//					plus.webview.close(indexboss);				
+				
+
+		        var all = plus.webview.all(); 
+		        var current = plus.webview.currentWebview().id; 
+		        for(var i=0,len=all.length;i<len;i++){ 
+		            if(all[i].id!==current){ 
+		                all[i].close(); 
+		            } 
+		        } 
+				
+				plus.storage.clear(); 
+				mui.openWindow({
+					url: 'login.html',
+					id: 'login',
+					createNew: false,
+					show: {
+						autoShow: true,
+						aniShow: false
+					},
+					waiting: {
+						autoShow: false,
+						title: '退出成功...'
+					},
+
+				})
+			})
+		})
+	</script>
+	
+
+</html>
