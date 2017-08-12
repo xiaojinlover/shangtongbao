@@ -218,6 +218,55 @@ nav.mui-bar-tab > .mui-active span {
   color: #259cf0;
 }
 
+#setting .mui-table-view::after {
+  height: 0;
+}
+#setting .mui-content-padded {
+  background: #fff;
+  margin: 0;
+}
+#setting .mui-content-padded .mui-btn-block {
+  color: #999;
+  font-size: 16px;
+  line-height: 18px;
+}
+#setting .mui-table-view-title {
+  height: 100px;
+  margin-top: 0;
+}
+#setting .mui-table-view-title li.mui-table-view-cell {
+  background: #259cf0;
+  height: 100px;
+}
+#setting .mui-table-view-title li.mui-table-view-cell::after {
+  height: 0;
+}
+#setting .mui-table-view-title li.mui-table-view-cell a.mui-active {
+  background: #259cf0 !important;
+}
+#setting .mui-table-view-title li.mui-table-view-cell a {
+  padding-top: 15px;
+  height: 100px;
+}
+#setting .mui-table-view-title li.mui-table-view-cell a::after {
+  color: #fff;
+}
+#setting .mui-table-view-title li.mui-table-view-cell a > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 70px;
+  max-width: 70px;
+}
+#setting .mui-table-view-title li.mui-table-view-cell a .mui-media-body {
+  height: 70px;
+  padding-top: 15px;
+  color: #fff;
+}
+#setting .mui-table-view-title li.mui-table-view-cell a .mui-media-body p.mui-ellipsis {
+  font-size: 13px;
+  color: #fff;
+}
+
 /***下拉菜单***/
 .menu-backdrop {
   display: none;

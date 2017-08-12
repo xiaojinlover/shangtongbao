@@ -258,6 +258,59 @@ nav.mui-bar-tab{
         }
     }
 }
+#setting{
+    .mui-table-view::after {
+        height:0;
+    }
+    .mui-content-padded{
+        background:#fff;
+        margin:0;
+        .mui-btn-block{
+            color:#999;
+            font-size:16px;
+            line-height:18px; 
+        }
+    }
+    
+    .mui-table-view-title{
+        height:100px;
+        margin-top:0;
+        
+        li.mui-table-view-cell{
+            background: $blue;
+            &::after{
+                height:0;
+            }
+            height:100px;
+            a.mui-active{
+                background:$blue !important;
+            }
+            a{
+                &::after{
+                    color:#fff;
+                }
+                padding-top:15px;
+                height:100px;
+                >img{
+                    width:70px;
+                    height:70px;
+                    border-radius:70px;
+                    max-width:70px;
+                }
+                .mui-media-body{
+                    height:70px;
+                    padding-top:15px;
+                    color: #fff;
+                    p.mui-ellipsis{
+                        font-size:13px;
+                        color:#fff;
+                    }
+                }
+            }
+        }       
+    }
+    
+}
 /***下拉菜单***/
 	.menu-backdrop {
 		display: none;
