@@ -1,13 +1,27 @@
 {
-  "index.html": {
-    "resources": [
-      "js/common.js",
-      "dist/js/mui.js",
-      "css/iconfont.css",
-      "dist/css/style.css",
-      "css/iconfont.woff",
-      "dist/css/mui.css",
-      "dist/fonts/mui.ttf"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"js/common.js",
+			"dist/js/mui.js",
+			"css/iconfont.css",
+			"dist/css/style.css",
+			"css/iconfont.woff",
+			"dist/css/mui.css",
+			"dist/fonts/mui.ttf",
+			"js/jquery-2.0.2.min.js"
+		],
+		"refer": [
+			"setting.html",
+			"email-detail.html"
+		]
+	},
+	"setting.html": {
+		"resources": [
+			"js/mui.zoom.js",
+			"js/mui.previewimage.js"
+		],
+		"refer": [
+			"index.html"
+		]
+	}
 }

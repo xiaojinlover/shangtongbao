@@ -209,9 +209,23 @@
 					"dist/css/style.css",
 					"css/iconfont.woff",
 					"dist/css/mui.css",
-					"dist/fonts/mui.ttf"
+					"dist/fonts/mui.ttf",
+					"js/jquery-2.0.2.min.js"
 				],
-				"refer": [],
+				"refer": [
+					"setting.html",
+					"email-detail.html"
+				],
+				"priority": 0
+			},
+			"setting.html": {
+				"resources": [
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js"
+				],
+				"refer": [
+					"index.html"
+				],
 				"priority": 0
 			}
 		},
@@ -388,7 +402,6 @@
 				"examples/hello-mui/css/mui.min.css",
 				"examples/nativeTab/css/mui.css",
 				"js/mui.dialog.prompt.js",
-				"email-detail.html",
 				"sass/push.scss",
 				"examples/hello-mui/images/login-1.png",
 				"js/mui.js",

@@ -36,15 +36,19 @@
 				timeout: 10000,
 				success: function(data) {
 					
+					var htmlStr = '<meta name="viewport" content="width=device-width"  />'
 					if((data.back.htmlbody!='')){
-						document.write('<meta name="viewport" content="width=device-width" />'+data.back.htmlbody);
+						document.write(htmlStr+data.back.htmlbody);
 					}else{						
-						document.write('<meta name="viewport" content="width=device-width" />'+(data.back.textbody).replace(/\r\n/g,'<br />'));						
+						document.write(htmlStr+(data.back.textbody).replace(/\r\n/g,'<br />'));						
 					}
-									
+					if(screen.width!=document.body.scrollWidth){
+						document.write('<meta name="viewport" content="width=device-width" initial-scale=' + (screen.width/document.body.scrollWidth) + ' />');
+					}
+					console.log(document.getElementsByTagName('html')[0].innerHTML)
 				},
 				beforeSend: function() {
-					plus.nativeUI.showWaiting("玩命加载中...", {
+					plus.nativeUI.showWaiting("玩命加载中...", { 
 						background: "rgba(0,0,0,0.4)"
 					});
 				},
