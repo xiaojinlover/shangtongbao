@@ -214,7 +214,9 @@
 				],
 				"refer": [
 					"setting.html",
-					"email-detail.html"
+					"email-detail.html",
+					"address.html",
+					"login.html"
 				],
 				"priority": 0
 			},
@@ -222,6 +224,28 @@
 				"resources": [
 					"js/mui.zoom.js",
 					"js/mui.previewimage.js"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"address.html": {
+				"resources": [
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js",
+					"css/mui.indexedlist.css",
+					"js/mui.indexedlist.js"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"login.html": {
+				"resources": [
+					"images/logo.jpg",
+					"js/md5.js"
 				],
 				"refer": [
 					"index.html"

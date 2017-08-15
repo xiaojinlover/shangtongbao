@@ -147,8 +147,8 @@
 			    }
 			} 
 		});
-		(function($){
-			$(".mui-col-xs-9").scroll({
+		(function(mui){
+			mui(".mui-col-xs-9").scroll({
 				bounce: true,
 				indicators: false
 			});		
@@ -389,24 +389,23 @@
 			
 			//选项卡
 			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var href = this.getAttribute('href');
+				
+				mui.openWindow({
+					url: href + '.html',
+					id: href,
+					createNew: false,
+					show: {
+						autoShow: true,
+						aniShow: false
+					},
+					waiting: {
+						autoShow: true,
+						title: '拼命加载中...'
+					},
 
-					var href = this.getAttribute('href');
-					
-					mui.openWindow({
-						url: href + '.html',
-						id: href,
-						createNew: false,
-						show: {
-							autoShow: true,
-							aniShow: false
-						},
-						waiting: {
-							autoShow: true,
-							title: '拼命加载中...'
-						},
-
-					})
 				})
+			})
 		})
 	</script>
 

@@ -311,6 +311,57 @@ nav.mui-bar-tab{
     }
     
 }
+
+#address{
+	header{
+		.mui-segmented-control{
+			width:50%;
+			top: 8px;
+			height: 28px;
+			border:1px solid #fff;
+			a.mui-control-item{
+				line-height: 28px;
+				color: #fff;
+			}
+			a.mui-control-item.mui-active{
+				color: $blue;
+				background: #fff;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***下拉菜单***/
 	.menu-backdrop {
 		display: none;

@@ -267,6 +267,21 @@ nav.mui-bar-tab > .mui-active span {
   color: #fff;
 }
 
+#address header .mui-segmented-control {
+  width: 50%;
+  top: 8px;
+  height: 28px;
+  border: 1px solid #fff;
+}
+#address header .mui-segmented-control a.mui-control-item {
+  line-height: 28px;
+  color: #fff;
+}
+#address header .mui-segmented-control a.mui-control-item.mui-active {
+  color: #259cf0;
+  background: #fff;
+}
+
 /***下拉菜单***/
 .menu-backdrop {
   display: none;

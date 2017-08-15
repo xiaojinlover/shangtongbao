@@ -12,13 +12,35 @@
 		],
 		"refer": [
 			"setting.html",
-			"email-detail.html"
+			"email-detail.html",
+			"address.html",
+			"login.html"
 		]
 	},
 	"setting.html": {
 		"resources": [
 			"js/mui.zoom.js",
 			"js/mui.previewimage.js"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"address.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/mui.indexedlist.css",
+			"js/mui.indexedlist.js"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"images/logo.jpg",
+			"js/md5.js"
 		],
 		"refer": [
 			"index.html"
