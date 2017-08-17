@@ -135,31 +135,26 @@
 		mui.init({ 
 			pullRefresh: {
 				container: '#pullrefresh',
-				down: {
+				down: {					
+					auto: true,	
 					callback: pulldownRefresh,
-					auto: true,
-				 	style: 'default'            	
 				},
-				up : {
-			      style:'default',	
+				up:{			      	
 			      auto: false,
-			      callback :pullupRefresh  
+			      callback :pullupRefresh,
 			    }
 			} 
 		});
-		(function(mui){
-			mui(".mui-col-xs-9").scroll({
-				bounce: true,
-				indicators: false
-			});		
-		})(mui); 
-		var getInfo = function getInfo() {} //全局
+		
+				
+		
+		var getdownInfo = function getdownInfo() {} //全局
 		
 		//下拉刷新
 		function pulldownRefresh() {
-			setTimeout(function() {
-				var data1 = new getInfo();
-				data1.getData();
+			setTimeout(function(){
+				var data1 = new getdownInfo();
+				data1.getData1();
 				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			}, 800);
 		}
@@ -168,15 +163,20 @@
 		function pullupRefresh() {
 			setTimeout(function() {
 				var data2 = new getupInfo();
-				data2.getData();
+				data2.getData2();
 				mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
 			}, 800);
 		}
 		
-		//上拉加载
-		mui.plusReady(function() {
+		
+		mui.plusReady(function() {   
 			
-			getupInfo.prototype.getData=function(){
+			mui(".mui-col-xs-9").scroll({ 
+				bounce: true,
+				indicators: false
+			});	
+			
+			getupInfo.prototype.getData2=function(){
 				var pageNum = $('#email-list li').length/50;
 				
 				var getEmailData = {
@@ -198,7 +198,7 @@
 					success: function(data) {
 						
 						var emailHtml = '';					
-						if(data.back.list != '') {
+						if(data.back.list != '') { 
 							mui.each(data.back.list, function(index, item) {
 								emailHtml += '<li class="mui-table-view-cell mui-media"><a data-Subject="' + item.Subject + '" data-Bak="' + item.Bak + '" data-Area="' + item.Area + '" data-SendDate="' + item.RecDate.substr(0,10) + '" data-cc="' + item.cc + '" data-itTo="' + item.itTo + '" data-FromEmail="' + item.FromEmail + '" data-FromName="' + item.FromName + '" data-mailid="' + item.Id + '" href="email-detail"><div class="mui-media-body">' + item.FromName + '<p class="mui-ellipsis">' + item.Subject + '</p><p class="mui-ellipsis">' + item.textbody + '</p></div><span class=" mui-badge mui-badge-inverted ">' + item.RecDate.substr(0,10) + '</span></a></li>';
 							})							
@@ -218,11 +218,10 @@
 						mui.alert("参数错误：" + typeinfo);
 					}
 				}); 
-			}
-		})
-		//下拉刷新
-		mui.plusReady(function() {			
-			getInfo.prototype.getData = function() {
+			} 
+			
+				
+			getdownInfo.prototype.getData1=function() {
 				var getEmailData = {
 					UserId: plus.storage.getItem('UserId'),
 					Password: plus.storage.getItem('Password'),
@@ -240,7 +239,7 @@
 					type: 'post',
 					timeout: 10000,
 					success: function(data) {
-						console.log(JSON.stringify(data))
+						
 						var emailHtml = '';					
 						if(data.back.list != '') {
 							mui.each(data.back.list, function(index, item) {
@@ -335,7 +334,7 @@
 					type: 'post',
 					timeout: 10000,
 					success: function(data) {
-						console.log(JSON.stringify(data))
+						
 						if(data.back!='')
 						var zhinengMenuHtml = ''
 						mui.each(data.back,function(index,item){

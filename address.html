@@ -149,7 +149,7 @@
 				</div>
 			<!--联系人 end-->
 			</div>
-			<div id="item2" class="mui-control-content mui-active"> 
+			<div id="item2" class="mui-control-content"> 
 				<!--同事-->
 				<div class="mui-indexed-list" id="list02">
 					<div class="mui-indexed-list-search mui-input-row mui-search">
@@ -239,8 +239,14 @@
 	<script src="js/jquery-2.0.2.min.js"></script> 
 	<script>
 		mui.init();
-		//联系人
-		var getLianxiren = function(){
+		
+
+		
+		mui.plusReady(function() { 
+			
+			
+			//联系人
+		 function getLianxiren(){
 			//联系人索引列表
 			
 			var getEmailData = {
@@ -257,22 +263,22 @@
 					type: 'post',
 					timeout: 10000,
 					success: function(data) {
+						
 						var lianxirenHtml = '';
 						mui.each(data.back.list,function(index,item){
 							lianxirenHtml += '<li class="mui-table-view-divider mui-indexed-list-group">A</li>'+
-									'<li class="mui-table-view-cell mui-indexed-list-item">'+
-										'<img class="mui-media-object mui-pull-left" src="images/logo.jpg">'+
+							'<li class="mui-table-view-cell mui-indexed-list-item">'+
 										'<div class="mui-media-object mui-pull-right"><i class="icon iconfont icon-fasongyoujian1"></i></div>'+
 										'<div class="mui-media-body">'+
 											'<a href="#">'+
-												'<span class="text-666">张三（15988601338）</span>'+
-												'<p class="mui-ellipsis">454545@qq.com</p>'+
-												'<p class="mui-ellipsis">男/<small>普通联系人</small></p>'+
+												'<span class="text-666">' + item.Name + '（' + (item.Tel?item.Tel:"<small>无手机号</small>") + '）</span>'+
+												'<p class="mui-ellipsis">' + (item.Email?item.Email:'暂无') + '</p>'+
+												'<p class="mui-ellipsis">' + item.Sex + '/<small>' + (item.MainAdd==1?"主联系人":"普通联系人") + '</small></p>'+
 											'</a>'+
 										'</div>'+
 									'</li>';
 						})
-						
+						document.getElementById('lianxiren-list').innerHTML = lianxirenHtml;
 					},
 					beforeSend: function() {
 						plus.nativeUI.showWaiting("玩命加载中...", {
@@ -317,7 +323,7 @@
 				var nav = document.querySelector("nav");
 				var list = document.getElementById('list02');
 				list.style.height = (document.body.offsetHeight - header.offsetHeight - nav.offsetHeight) + 'px';
-				window.indexedList = new mui.IndexedList(list); 
+				self.indexedList = new mui.IndexedList(list); 
 				if(self.endPullDownToRefresh!=undefined)
 					self.endPullDownToRefresh();  
 			}, 800);
@@ -328,10 +334,12 @@
 				callback: getTongshi
 			}			
 		});
-
-		
-		mui.plusReady(function() { 
 			
+			
+			mui(".mui-scroll-wrapper").scroll({
+				bounce: true,
+				indicators: false
+			});	
 			//选项卡
 			mui('.mui-bar-tab').on('tap', 'a', function(e) {
 				var href = this.getAttribute('href');

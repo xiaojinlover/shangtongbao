@@ -157,7 +157,7 @@
                         "spotlight-normal7": "unpackage/res/icons/40x40.png",
                         "spotlight-retina7": "unpackage/res/icons/80x80.png",
                         "settings-normal": "unpackage/res/icons/29x29.png",
-                        "settings-retina": "unpackage/res/icons/58x58.png" 
+                        "settings-retina": "unpackage/res/icons/58x58.png","retina":"unpackage/res/icons/144x144.png" 
                     }
                 },
                 "android": {
@@ -216,7 +216,8 @@
 					"setting.html",
 					"email-detail.html",
 					"address.html",
-					"login.html"
+					"login.html",
+					"write-email.html"
 				],
 				"priority": 0
 			},
@@ -226,7 +227,9 @@
 					"js/mui.previewimage.js"
 				],
 				"refer": [
-					"index.html"
+					"index.html",
+					"address.html",
+					"setting-shezhi.html"
 				],
 				"priority": 0
 			},
@@ -235,7 +238,15 @@
 					"js/mui.pullToRefresh.js",
 					"js/mui.pullToRefresh.material.js",
 					"css/mui.indexedlist.css",
-					"js/mui.indexedlist.js"
+					"js/mui.indexedlist.js",
+					"js/common.js",
+					"dist/js/mui.js",
+					"css/iconfont.css",
+					"dist/css/style.css",
+					"js/jquery-2.0.2.min.js",
+					"css/iconfont.woff",
+					"dist/css/mui.css",
+					"dist/fonts/mui.ttf"
 				],
 				"refer": [
 					"index.html"
@@ -249,6 +260,30 @@
 				],
 				"refer": [
 					"index.html"
+				],
+				"priority": 0
+			},
+			"write-email.html": {
+				"resources": [
+					"lib/jquery.manifest.js",
+					"lib/jquery.ui.widget.min.js",
+					"lib/dist/js/lib/zepto.js",
+					"lib/dist/css/wangEditor-mobile.css",
+					"lib/dist/js/wangEditor-mobile.js",
+					"lib/jquery.marcopolo.min.js",
+					"lib/email.css",
+					"lib/jquery.min.js"
+				],
+				"refer": [
+					"login.html",
+					"select-user.html"
+				],
+				"priority": 0
+			},
+			"setting-shezhi.html": {
+				"resources": [],
+				"refer": [
+					"login.html"
 				],
 				"priority": 0
 			}

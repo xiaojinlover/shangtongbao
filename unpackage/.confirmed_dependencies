@@ -14,7 +14,8 @@
 			"setting.html",
 			"email-detail.html",
 			"address.html",
-			"login.html"
+			"login.html",
+			"write-email.html"
 		]
 	},
 	"setting.html": {
@@ -23,7 +24,9 @@
 			"js/mui.previewimage.js"
 		],
 		"refer": [
-			"index.html"
+			"index.html",
+			"address.html",
+			"setting-shezhi.html"
 		]
 	},
 	"address.html": {
@@ -31,7 +34,15 @@
 			"js/mui.pullToRefresh.js",
 			"js/mui.pullToRefresh.material.js",
 			"css/mui.indexedlist.css",
-			"js/mui.indexedlist.js"
+			"js/mui.indexedlist.js",
+			"js/common.js",
+			"dist/js/mui.js",
+			"css/iconfont.css",
+			"dist/css/style.css",
+			"js/jquery-2.0.2.min.js",
+			"css/iconfont.woff",
+			"dist/css/mui.css",
+			"dist/fonts/mui.ttf"
 		],
 		"refer": [
 			"index.html"
@@ -44,6 +55,27 @@
 		],
 		"refer": [
 			"index.html"
+		]
+	},
+	"write-email.html": {
+		"resources": [
+			"lib/jquery.manifest.js",
+			"lib/jquery.ui.widget.min.js",
+			"lib/dist/js/lib/zepto.js",
+			"lib/dist/css/wangEditor-mobile.css",
+			"lib/dist/js/wangEditor-mobile.js",
+			"lib/jquery.marcopolo.min.js",
+			"lib/email.css",
+			"lib/jquery.min.js"
+		],
+		"refer": [
+			"login.html",
+			"select-user.html"
+		]
+	},
+	"setting-shezhi.html": {
+		"refer": [
+			"login.html"
 		]
 	}
 }
