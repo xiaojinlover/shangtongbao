@@ -131,6 +131,7 @@
 	<script src="dist/js/mui.js"></script>
 	<script src="js/common.js"></script>
 	<script src="js/jquery-2.0.2.min.js"></script>
+	
 	<script>
 		mui.init({ 
 			pullRefresh: {
@@ -148,7 +149,7 @@
 		
 				
 		
-		var getdownInfo = function getdownInfo() {} //全局
+		function getdownInfo() {} //全局
 		
 		//下拉刷新
 		function pulldownRefresh() {
@@ -158,7 +159,7 @@
 				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			}, 800);
 		}
-		var getupInfo = function getupInfo() {} //全局
+		function getupInfo() {} //全局
 		//上拉加载
 		function pullupRefresh() {
 			setTimeout(function() {

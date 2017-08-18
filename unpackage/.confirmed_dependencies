@@ -8,7 +8,9 @@
 			"css/iconfont.woff",
 			"dist/css/mui.css",
 			"dist/fonts/mui.ttf",
-			"js/jquery-2.0.2.min.js"
+			"js/jquery-2.0.2.min.js",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js"
 		],
 		"refer": [
 			"setting.html",
