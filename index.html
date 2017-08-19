@@ -31,28 +31,30 @@
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
 			<!--侧滑--> 
 			<aside id="offCanvasSide" class="mui-off-canvas-left " >
-				<div class="mui-row" style="height: 100%;" id="offCanvasSideScroll" >
-					<div class="mui-col-xs-3" style="height: 100%;">
-						<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
-							<a class="mui-control-item mui-active" href="#content1"><span>智</span></a>
-							<a class="mui-control-item" href="#content2"><span>业</span></a>
-							<a class="mui-control-item" href="#content3"><span>测</span></a>
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll mui-row" style="margin-top: 0; height: 100%;"> 
+						<div class="mui-col-xs-3" style="height: 100%;">
+							<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+								<a class="mui-control-item mui-active" href="#content1"><span>智</span></a>
+								<a class="mui-control-item" href="#content2"><span>业</span></a>
+								<a class="mui-control-item" href="#content3"><span>测</span></a>
+							</div>
 						</div>
-					</div>
-					<div id="segmentedControlContents" class="mui-col-xs-9" style="height: 100%;overflow: scroll;"> 
-						
-						<div id="content1" class="mui-control-content mui-active" >
+						<div id="segmentedControlContents" class="mui-col-xs-9" style="height: 100%;overflow: scroll;"> 
 							
-							<ul class="mui-table-view" id="zhi-neng" > 
+							<div id="content1" class="mui-control-content mui-active" >
 								
-							</ul>
-							
-						</div>
-						<div id="content2" class="mui-control-content">
-
-						</div>
-						<div id="content3" class="mui-control-content">
-
+								<ul class="mui-table-view" id="zhi-neng" > 
+									
+								</ul>
+								 
+							</div>
+							<div id="content2" class="mui-control-content">
+	
+							</div>
+							<div id="content3" class="mui-control-content">
+	
+							</div>
 						</div>
 					</div>
 				</div>
@@ -65,9 +67,8 @@
 					<h1 class="mui-title">全部邮件</h1> 
 					<a class="mui-btn mui-btn-link mui-pull-right" id="icon-menu"><i class="mui-icon iconfont icon-tianjia text-white"></i></a>
 				</header>
-				<div class="mui-content mui-scroll-wrapper">
-					<div id="pullrefresh" class="mui-content">
-						<div class="mui-scroll-wrapper">  
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper" >
+					<div id="pullrefresh" class="mui-scroll-wrapper">						
 						<div class="mui-scroll">
 							<div class="mui-content">
 								<ul class="mui-table-view mui-table-view-chevron" id="email-list">
@@ -83,33 +84,31 @@
 									</li>-->
 								</ul>
 							</div>
-						</div>
-						</div>
+						</div>						
 					</div>
-					<!--导航-->
-					<nav class="mui-bar mui-bar-tab">
-						<a class="mui-tab-item mui-active" href="index">
-							<span class="mui-icon iconfont icon-em"></span>
-							<span class="mui-tab-label">邮件</span>
-						</a>
-						<a class="mui-tab-item" href="address">
-							<span class="mui-icon iconfont icon-kehu"></span>
-							<span class="mui-tab-label">客户</span>
-						</a>
-						<a class="mui-tab-item" href="address">
-							<span class="mui-icon iconfont icon-tongxunlu"></span>
-							<span class="mui-tab-label">通讯录</span>
-						</a>
-						<a class="mui-tab-item" href="setting">
-							<span class="mui-icon iconfont icon-wode"></span>
-							<span class="mui-tab-label">我的</span>
-						</a>
-					</nav>
-					<!--导航 end-->
 				</div>
-				<div class="mui-off-canvas-backdrop"></div>
+				<!--<div class="mui-off-canvas-backdrop"></div>-->
 			</div>
-			
+			<!--导航-->
+			<nav class="mui-bar mui-bar-tab">
+				<a class="mui-tab-item mui-active" href="index">
+					<span class="mui-icon iconfont icon-em"></span>
+					<span class="mui-tab-label">邮件</span>
+				</a>
+				<a class="mui-tab-item" href="address">
+					<span class="mui-icon iconfont icon-kehu"></span>
+					<span class="mui-tab-label">客户</span>
+				</a>
+				<a class="mui-tab-item" href="address">
+					<span class="mui-icon iconfont icon-tongxunlu"></span>
+					<span class="mui-tab-label">通讯录</span>
+				</a>
+				<a class="mui-tab-item" href="setting">
+					<span class="mui-icon iconfont icon-wode"></span>
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</nav>
+			<!--导航 end-->
 		</div>
 		<!--下拉菜单-->
 			<div id="menu-wrapper" class="menu-wrapper hidden">   
@@ -130,52 +129,49 @@
 	<script src="dist/js/mui.js"></script>
 	<script src="js/common.js"></script>
 	<script src="js/jquery-2.0.2.min.js"></script>
+	<!--<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>-->
 	
 	<script>
 		mui.init({ 
 			pullRefresh: {
 				container: '#pullrefresh', 
 				down: {					
-					auto: true,	
-					callback: pulldownRefresh,
+					auto: false,	
+					callback: function(){
+						setTimeout(function(){
+							var data1 = new getdownInfo();
+							data1.getData1();
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						}, 800);
+					},
 				},
 				up:{			      	
 			      auto: false,
-			      callback :pullupRefresh,
+			      callback :function(){
+			      	setTimeout(function() {
+						var data2 = new getupInfo();
+						data2.getData2();
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(); 
+					}, 800);
+			      },
 			    }
 			} 
 		});
 		
-				
+		
 		
 		function getdownInfo() {} //全局
 		
-		//下拉刷新
-		function pulldownRefresh() {
-			setTimeout(function(){
-				var data1 = new getdownInfo();
-				data1.getData1();
-				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-			}, 800);
-		}
+
 		function getupInfo() {} //全局
-		//上拉加载
-		function pullupRefresh() {
-			setTimeout(function() {
-				var data2 = new getupInfo();
-				data2.getData2();
-				mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
-			}, 800);
-		}
+
 		
-		
-		mui.plusReady(function() {   
-			
-			mui(".mui-col-xs-9").scroll({ 
-				bounce: true,
-				indicators: false
-			});	
-			
+		mui(".mui-col-xs-9,#offCanvasSideScroll,#offCanvasContentScroll").scroll({ 
+			bounce: true,
+			indicators: false
+		}); 
+		mui.plusReady(function() { 
 			
 			getupInfo.prototype.getData2=function(){
 				var pageNum = $('#email-list li').length/50;
@@ -341,7 +337,7 @@
 						mui.each(data.back,function(index,item){
 							zhinengMenuHtml += '<li class="mui-table-view-cell"><i class="iconfont icon-email"></i> ' + item.name + '</li>' 
 						})						
-						document.getElementById('zhi-neng').innerHTML = zhinengMenuHtml
+						document.getElementById('zhi-neng').innerHTML = zhinengMenuHtml;   
 					},
 					beforeSend: function() {
 						plus.nativeUI.showWaiting("玩命加载中...", {
