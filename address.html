@@ -312,6 +312,37 @@
 		var getTongshi = function(){ 
 			
 			//同事索引列表
+			var getEmailData = {
+					UserId: plus.storage.getItem('UserId'),
+					Password: plus.storage.getItem('Password'),
+					Ran: plus.storage.getItem('Ran'),
+					Sign: plus.storage.getItem('Sign')
+					
+				} 
+ 	
+				mui.ajax(apiUrl + '/api/user/getlist', {
+					data: getEmailData,
+					type: 'post',
+					timeout: 10000,
+					success: function(data) {
+						console.log(JSON.stringify(data))
+						
+//						document.getElementById('tongshi-list').innerHTML = lianxirenHtml;
+					},
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("玩命加载中...", {
+							background: "rgba(0,0,0,0.5)"
+						});
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+					},
+					error: function(xhr, typeinfo, errorThrown) {
+						mui.alert("参数错误：" + typeinfo);
+					}
+				});  
+			
+			
 			
 			setTimeout(function() {
 				var header = document.querySelector('header.mui-bar'); 
