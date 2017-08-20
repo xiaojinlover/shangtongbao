@@ -124,21 +124,21 @@
 		<!--下拉菜单 end-->
 	</body>
 	<script>
-		var h5pullDown = true;
-	</script>
-	<script src="dist/js/mui.js"></script>
+		var h5pullDown = true; 
+	</script> 
+	<script src="dist/js/mui.js"></script> 
 	<script src="js/common.js"></script>
 	<script src="js/jquery-2.0.2.min.js"></script>
 	<!--<script src="js/mui.pullToRefresh.js"></script>
 	<script src="js/mui.pullToRefresh.material.js"></script>-->
 	
 	<script>
-		mui.init({ 
+		mui.init({   
 			pullRefresh: {
 				container: '#pullrefresh', 
 				down: {					
-					auto: false,	
-					callback: function(){
+					auto: true,  	
+					callback: function(){ 
 						setTimeout(function(){
 							var data1 = new getdownInfo();
 							data1.getData1();

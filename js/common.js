@@ -29,7 +29,7 @@ function removeHtmlTab(tab) {
  	return tab.replace(/>/g,'');
 } 
 
-mui.plusReady(function() {
+mui.plusReady(function() { 
 	//系统状态栏
 	plus.navigator.setStatusBarBackground("#259cf0");
 	plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");

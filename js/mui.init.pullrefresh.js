@@ -17,7 +17,7 @@
 				if(container) {
 					var $container = $(container);
 					if($container.length === 1) {
-						if($.os.plus) { //5+环境
+						if($.os.plus&&$.os.android&&!h5pullDown) { //5+环境
 							if(hasPulldown && pullRefreshOptions.down.style == "circle") { //原生转圈
 								$.plusReady(function() {
 									//这里改写$.fn.pullRefresh
