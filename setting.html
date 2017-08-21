@@ -230,9 +230,37 @@
 		//头像预览
 		mui.previewImage(); 
 		mui.plusReady(function() {
-			//
-			document.getElementById('head-img1').setAttribute('src',plus.storage.getItem('users_image')?plus.storage.getItem('users_image'):"images/logo.jpg");
+			//获取用户头像并缓存
+			var getImagesData = {
+				UserId: plus.storage.getItem('UserId'),
+				Password: plus.storage.getItem('Password'),
+				Ran: plus.storage.getItem('Ran'),
+				Sign: plus.storage.getItem('Sign'),
+				picuserid:plus.storage.getItem('id')
+			}
+			mui.ajax(apiUrl + 'api/user/getpic', {     
+				data: getImagesData, 
+				type: 'post',
+				timeout: 10000,
+				success: function(data) {
+					
+					console.log(JSON.stringify(data))
+				},
+				beforeSend: function() {
+					plus.nativeUI.showWaiting("玩命加载中...", {
+						background: "rgba(0,0,0,0.5)"
+					});
+				},
+				complete: function() {
+					plus.nativeUI.closeWaiting();
+				},
+				error: function(xhr, typeinfo, errorThrown) {
+					mui.alert("参数错误：" + typeinfo);
+				} 
+			});
 			
+			document.getElementById('head-img1').setAttribute('src',plus.storage.getItem('userimage')?plus.storage.getItem('userimage'):"images/logo.jpg");
+			document.getElementById('xing-ming').innerHTML = plus.storage.getItem('name') + '<p class="mui-ellipsis">' + plus.storage.getItem('department') + '</p>'
 			//选项卡
 			mui('.mui-bar-tab').on('tap', 'a', function(e) {
 
@@ -394,26 +422,31 @@
 					
 					var imgData = getBase64Image(image);
 					document.getElementById('head-img1').setAttribute('src', 'data:image/png;base64,' + imgData);
-					//调用上传接口
+					//调用上传接口					
 					var uploadHeaderData = {
-						"token": plus.storage.getItem('token'),
-						"head_image":imgData
+						UserId: plus.storage.getItem('UserId'),
+						Password: plus.storage.getItem('Password'),
+						Ran: plus.storage.getItem('Ran'),
+						Sign: plus.storage.getItem('Sign'),
+						Pictype:'png',
+						picdata:imgData
+//						picuserid:plus.storage.getItem('id')
 					}
 					
-					mui.ajax('http://www.huirenshi.com/Hrs/app/upload_head_image', {
+					mui.ajax(apiUrl+'/api/user/setpic', {
 						data: uploadHeaderData,
 						type: 'post',
-						timeout: 10000,
+						timeout: 10000, 
 						success: function(data) {
-							console.log(data)
-							var data = JSON.parse(data);
-							if(data.status == 1) {
-								plus.storage.setItem('users_image',data.data.url);
-								console.log(data.data.url)
-								mui.alert(data.detail);
-							} else {
-								mui.alert(data.detail);
+							if(data.back.indexOf('.png')!='-1'){
+								plus.storage.setItem('userimage',picUrl + data.back);
+								mui.toast('上传完成');
+							}else{
+								mui.toast('上传失败');
 							}
+							
+									
+							
 						},
 						beforeSend: function() {
 							plus.nativeUI.showWaiting("头像上传中...");

@@ -1,6 +1,6 @@
 var h5pullDown = true;
 
-
+var picUrl = 'http://116.62.232.164:9898/picimage/';
 var apiUrl = "http://116.62.232.164:9898/";
 
 //html转义

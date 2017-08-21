@@ -68,9 +68,13 @@
 					type: 'post',
 					timeout: 10000,
 					success: function(data) {
+//						console.log(JSON.stringify(data)) 
 						if(data.back.id){
 							plus.storage.setItem("UserId", document.forms[0].username.value);
 							plus.storage.setItem("Password", hex_md5(document.forms[0].password.value).toUpperCase()); 
+							plus.storage.setItem('id',data.back.id);
+							plus.storage.setItem('name',data.back.name);
+							plus.storage.setItem('department',data.back.department);
 							mui.openWindow({
 								url: 'index.html',
 								id: 'index',
