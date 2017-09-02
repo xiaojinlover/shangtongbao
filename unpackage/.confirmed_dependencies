@@ -10,7 +10,10 @@
 			"dist/fonts/mui.ttf",
 			"js/jquery-2.0.2.min.js",
 			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js"
+			"js/mui.pullToRefresh.material.js",
+			"css/iconfont.ttf",
+			"js/jquery-1.11.1.js",
+			"email-detail-html.html"
 		],
 		"refer": [
 			"setting.html",
@@ -23,7 +26,13 @@
 	"setting.html": {
 		"resources": [
 			"js/mui.zoom.js",
-			"js/mui.previewimage.js"
+			"js/mui.previewimage.js",
+			"images/logo.jpg",
+			"css/iconfont.ttf",
+			"css/iconfont.css",
+			"dist/css/style.css",
+			"dist/css/mui.css",
+			"dist/fonts/mui.ttf"
 		],
 		"refer": [
 			"index.html",
@@ -44,7 +53,9 @@
 			"js/jquery-2.0.2.min.js",
 			"css/iconfont.woff",
 			"dist/css/mui.css",
-			"dist/fonts/mui.ttf"
+			"dist/fonts/mui.ttf",
+			"css/iconfont.ttf",
+			"images/image.png"
 		],
 		"refer": [
 			"index.html"
@@ -78,6 +89,26 @@
 	"setting-shezhi.html": {
 		"refer": [
 			"login.html"
+		]
+	},
+	"email-detail.html": {
+		"resources": [
+			"js/common.js",
+			"dist/js/mui.js",
+			"css/iconfont.css",
+			"dist/css/style.css",
+			"email-detail-html.html",
+			"dist/css/mui.css",
+			"dist/fonts/mui.ttf"
+		],
+		"refer": [
+			"email-detail-html.html"
+		]
+	},
+	"email-detail-html.html": {
+		"resources": [
+			"js/common.js",
+			"dist/js/mui.js"
 		]
 	}
 }

@@ -212,7 +212,10 @@
 					"dist/fonts/mui.ttf",
 					"js/jquery-2.0.2.min.js",
 					"js/mui.pullToRefresh.js",
-					"js/mui.pullToRefresh.material.js"
+					"js/mui.pullToRefresh.material.js",
+					"css/iconfont.ttf",
+					"js/jquery-1.11.1.js",
+					"email-detail-html.html"
 				],
 				"refer": [
 					"setting.html",
@@ -226,7 +229,13 @@
 			"setting.html": {
 				"resources": [
 					"js/mui.zoom.js",
-					"js/mui.previewimage.js"
+					"js/mui.previewimage.js",
+					"images/logo.jpg",
+					"css/iconfont.ttf",
+					"css/iconfont.css",
+					"dist/css/style.css",
+					"dist/css/mui.css",
+					"dist/fonts/mui.ttf"
 				],
 				"refer": [
 					"index.html",
@@ -248,7 +257,9 @@
 					"js/jquery-2.0.2.min.js",
 					"css/iconfont.woff",
 					"dist/css/mui.css",
-					"dist/fonts/mui.ttf"
+					"dist/fonts/mui.ttf",
+					"css/iconfont.ttf",
+					"images/image.png"
 				],
 				"refer": [
 					"index.html"
@@ -287,6 +298,27 @@
 				"refer": [
 					"login.html"
 				],
+				"priority": 0
+			},
+			"email-detail.html": {
+				"resources": [
+					"js/common.js",
+					"dist/js/mui.js",
+					"css/iconfont.css",
+					"dist/css/style.css",
+					"email-detail-html.html",
+					"dist/css/mui.css",
+					"dist/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"email-detail-html.html": {
+				"resources": [
+					"js/common.js",
+					"dist/js/mui.js"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},
@@ -390,7 +422,6 @@
 				"examples/hello-mui/examples/nav_transparent_native.html",
 				"plugin/picker/js/mui.picker.js",
 				"examples/hello-mui/js/mui.listpicker.js",
-				"email-detail-html.html",
 				"examples/hello-mui/js/mui.pullToRefresh.material.js",
 				"examples/login/js/mui.min.js",
 				"js/mui.class.scroll.slider.js",
@@ -569,7 +600,6 @@
 				"examples/nativeTab/images/60x60.gif",
 				"sass/toast.scss",
 				"js/mui.fixed.js",
-				"css/iconfont.ttf",
 				"examples/hello-mui/examples/tab-webview-subpage-contact.html",
 				"examples/hello-mui/examples/nav_transparent.html",
 				"examples/hello-mui/examples/dtpicker.html",

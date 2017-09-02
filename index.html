@@ -128,7 +128,8 @@
 	</script> 
 	<script src="dist/js/mui.js"></script> 
 	<script src="js/common.js"></script>
-	<script src="js/jquery-2.0.2.min.js"></script>
+	<script src="html5plus://ready"></script> 
+	<script src="js/jquery-2.0.2.min.js"></script> 
 	<!--<script src="js/mui.pullToRefresh.js"></script>
 	<script src="js/mui.pullToRefresh.material.js"></script>-->
 	
@@ -141,7 +142,7 @@
 					callback: function(){ 
 						setTimeout(function(){
 							var data1 = new getdownInfo();
-							data1.getData1();
+							data1.getData1(); 
 							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						}, 800);
 					},

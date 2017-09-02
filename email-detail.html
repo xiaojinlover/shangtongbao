@@ -102,14 +102,15 @@
 		var h5pullDown = true;
 	</script>
 	<script src="dist/js/mui.js"></script>
-	<script src="js/common.js"></script>
+	<script src="js/common.js"></script> 
+	 <script src="html5plus://ready"></script>
 	<script>
 		//		mui.init({
 		//			swipeBack: true //启用右滑关闭功能		
 		//		});
 
 		mui.init({
-			subpages: [{
+			subpages: [{  
 				url: 'email-detail-html.html',
 				id: 'email-detail-html',
 				styles: {
@@ -117,7 +118,7 @@
 					bottom: 0,
 					width: '100%',
 					height: 'auto',
-					scalable: true,
+					scalable: true
 				},
 				extras: {
 					emailId: plus.webview.currentWebview().emailId,
